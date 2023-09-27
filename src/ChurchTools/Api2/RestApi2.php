@@ -115,7 +115,7 @@ class RestApi2 extends Client
         ]);
         $requestFactory = \Http\Discovery\Psr17FactoryDiscovery::findRequestFactory();
         $streamFactory = \Http\Discovery\Psr17FactoryDiscovery::findStreamFactory();
-        $normalizers = array(new \Symfony\Component\Serializer\Normalizer\ArrayDenormalizer(), new \ChurchTools\Api2\Normalizer\JaneObjectNormalizer());
+        $normalizers = array(new \Symfony\Component\Serializer\Normalizer\ArrayDenormalizer());
         $serializer = new \Symfony\Component\Serializer\Serializer($normalizers, array(new \Symfony\Component\Serializer\Encoder\JsonEncoder(new \Symfony\Component\Serializer\Encoder\JsonEncode(), new \Symfony\Component\Serializer\Encoder\JsonDecode(array('json_decode_associative' => true)))));
 
         $retVal= new static($pluginClient, $requestFactory, $serializer, $streamFactory);
