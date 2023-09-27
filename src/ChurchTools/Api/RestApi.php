@@ -36,7 +36,7 @@ class RestApi
         if ($cookie_jar) {
             $cookies = [ 'cookies' => $cookie_jar ];
         } else {
-            $cookies = true;
+            $cookies = [];
         }
         $this->guzzleClient = new \GuzzleHttp\Client($cookies);
         $this->churchHandle = $churchHandle;
