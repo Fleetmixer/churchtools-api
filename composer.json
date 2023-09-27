@@ -1,26 +1,26 @@
 {
-    "name": "vineyardkoeln/churchtools-api",
-    "type": "library",
-    "description": "Object-oriented API access to ChurchTools",
-    "homepage": "https://github.com/vineyardkoeln/churchtools-api",
-    "license": "Apache-2.0",
+	"name" : "excusemeplease/churchtools-api",
+	"type" : "library",
+	"description" : "Object-oriented API access to ChurchTools",
+	"homepage" : "https://github.com/vineyardkoeln/churchtools-api",
+	"license" : "Apache-2.0",
     "authors": [
         {"name": "Jörn Wagner", "email": "joern.wagner@vineyard.koeln"},
         {"name": "André Schild", "email": "andre@schild.ws"}
-    ],
-    "require": {
-        "php": ">=8.0",
-        "ext-json": "*",
-        "jane-php/open-api": "^5.2",
-        "guzzlehttp/psr7" : "^1.6",
-        "guzzlehttp/guzzle": "^7.3"
-    },
-    "require-dev": {
-        "squizlabs/php_codesniffer": "^3.5.4"
-    },
-    "autoload": {
-        "psr-4": {
-            "ChurchTools\\": "src/ChurchTools"
-        }
-    }
+	],
+	"require" : {
+		"php" : ">=8.0",
+		"ext-json" : "*",
+		"jane-php/open-api" : "^5.2",
+		"guzzlehttp/psr7" : "^1.6",
+		"guzzlehttp/guzzle" : "^7.3"
+	},
+	"require-dev" : {
+		"squizlabs/php_codesniffer" : "^3.5.4"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"ChurchTools\\" : "src/ChurchTools"
+		}
+	}
 }
