@@ -2,8 +2,16 @@
 
 namespace ChurchTools\Api2\Model;
 
-class GroupSettingsGroupMeeting
+class GroupSettingsGroupMeeting extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * Create weekly group meetings.
      *
@@ -34,6 +42,7 @@ class GroupSettingsGroupMeeting
      */
     public function setAutoCreate(bool $autoCreate) : self
     {
+        $this->initialized['autoCreate'] = true;
         $this->autoCreate = $autoCreate;
         return $this;
     }
@@ -55,6 +64,7 @@ class GroupSettingsGroupMeeting
      */
     public function setTemplateId(?int $templateId) : self
     {
+        $this->initialized['templateId'] = true;
         $this->templateId = $templateId;
         return $this;
     }

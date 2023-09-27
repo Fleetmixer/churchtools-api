@@ -2,20 +2,23 @@
 
 namespace ChurchTools\Api2\Endpoint;
 
-class GetTags extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jane\OpenApiRuntime\Client\Psr7Endpoint
+class GetTags extends \ChurchTools\Api2\Runtime\Client\BaseEndpoint implements \ChurchTools\Api2\Runtime\Client\Endpoint
 {
+    protected $accept;
     /**
      * Returns all tags of type persons or songs
      *
      * @param array $queryParameters {
      *     @var string $type Type of tags
      * }
+     * @param array $accept Accept content header application/json|text/plain
      */
-    public function __construct(array $queryParameters = array())
+    public function __construct(array $queryParameters = array(), array $accept = array())
     {
         $this->queryParameters = $queryParameters;
+        $this->accept = $accept;
     }
-    use \Jane\OpenApiRuntime\Client\Psr7EndpointTrait;
+    use \ChurchTools\Api2\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'GET';
@@ -30,7 +33,10 @@ class GetTags extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jane\
     }
     public function getExtraHeaders() : array
     {
-        return array('Accept' => array('application/json'));
+        if (empty($this->accept)) {
+            return array('Accept' => array('application/json', 'text/plain'));
+        }
+        return $this->accept;
     }
     protected function getQueryOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
     {
@@ -38,7 +44,7 @@ class GetTags extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jane\
         $optionsResolver->setDefined(array('type'));
         $optionsResolver->setRequired(array('type'));
         $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('type', array('string'));
+        $optionsResolver->addAllowedTypes('type', array('string'));
         return $optionsResolver;
     }
     /**
@@ -49,18 +55,24 @@ class GetTags extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jane\
      *
      * @return null|\ChurchTools\Api2\Model\Tag[]
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
-        if (200 === $status && mb_strpos($contentType, 'application/json') !== false) {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
+        if (is_null($contentType) === false && (200 === $status && mb_strpos($contentType, 'application/json') !== false)) {
             return $serializer->deserialize($body, 'ChurchTools\\Api2\\Model\\Tag[]', 'json');
         }
         if (401 === $status) {
         }
         if (403 === $status) {
-            throw new \ChurchTools\Api2\Exception\GetTagsForbiddenException();
+            throw new \ChurchTools\Api2\Exception\GetTagsForbiddenException($response);
         }
         if (404 === $status) {
-            throw new \ChurchTools\Api2\Exception\GetTagsNotFoundException();
+            throw new \ChurchTools\Api2\Exception\GetTagsNotFoundException($response);
         }
+    }
+    public function getAuthenticationScopes() : array
+    {
+        return array('login_token');
     }
 }

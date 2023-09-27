@@ -2,40 +2,48 @@
 
 namespace ChurchTools\Api2\Model;
 
-class GroupMember
+class GroupMember extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var int
      */
     protected $personId;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $roleId;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $comment;
     /**
+     * 
      *
-     *
-     * @var string
+     * @var \DateTime
      */
     protected $memberStartDate;
     /**
+     * 
      *
-     *
-     * @var string|null
+     * @var \DateTime|null
      */
     protected $memberEndDate;
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -44,7 +52,7 @@ class GroupMember
         return $this->personId;
     }
     /**
-     *
+     * 
      *
      * @param int $personId
      *
@@ -52,11 +60,12 @@ class GroupMember
      */
     public function setPersonId(int $personId) : self
     {
+        $this->initialized['personId'] = true;
         $this->personId = $personId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -65,7 +74,7 @@ class GroupMember
         return $this->roleId;
     }
     /**
-     *
+     * 
      *
      * @param int $roleId
      *
@@ -73,11 +82,12 @@ class GroupMember
      */
     public function setRoleId(int $roleId) : self
     {
+        $this->initialized['roleId'] = true;
         $this->roleId = $roleId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -86,7 +96,7 @@ class GroupMember
         return $this->comment;
     }
     /**
-     *
+     * 
      *
      * @param string $comment
      *
@@ -94,48 +104,51 @@ class GroupMember
      */
     public function setComment(string $comment) : self
     {
+        $this->initialized['comment'] = true;
         $this->comment = $comment;
         return $this;
     }
     /**
+     * 
      *
-     *
-     * @return string
+     * @return \DateTime
      */
-    public function getMemberStartDate() : string
+    public function getMemberStartDate() : \DateTime
     {
         return $this->memberStartDate;
     }
     /**
+     * 
      *
-     *
-     * @param string $memberStartDate
+     * @param \DateTime $memberStartDate
      *
      * @return self
      */
-    public function setMemberStartDate(string $memberStartDate) : self
+    public function setMemberStartDate(\DateTime $memberStartDate) : self
     {
+        $this->initialized['memberStartDate'] = true;
         $this->memberStartDate = $memberStartDate;
         return $this;
     }
     /**
+     * 
      *
-     *
-     * @return string|null
+     * @return \DateTime|null
      */
-    public function getMemberEndDate() : ?string
+    public function getMemberEndDate() : ?\DateTime
     {
         return $this->memberEndDate;
     }
     /**
+     * 
      *
-     *
-     * @param string|null $memberEndDate
+     * @param \DateTime|null $memberEndDate
      *
      * @return self
      */
-    public function setMemberEndDate(?string $memberEndDate) : self
+    public function setMemberEndDate(?\DateTime $memberEndDate) : self
     {
+        $this->initialized['memberEndDate'] = true;
         $this->memberEndDate = $memberEndDate;
         return $this;
     }

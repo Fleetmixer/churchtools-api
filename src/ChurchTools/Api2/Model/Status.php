@@ -2,8 +2,16 @@
 
 namespace ChurchTools\Api2\Model;
 
-class Status
+class Status extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * ID of status
      *
@@ -64,6 +72,7 @@ class Status
      */
     public function setId(int $id) : self
     {
+        $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
@@ -85,6 +94,7 @@ class Status
      */
     public function setName(string $name) : self
     {
+        $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
     }
@@ -106,6 +116,7 @@ class Status
      */
     public function setShorty(string $shorty) : self
     {
+        $this->initialized['shorty'] = true;
         $this->shorty = $shorty;
         return $this;
     }
@@ -127,6 +138,7 @@ class Status
      */
     public function setIsMember(bool $isMember) : self
     {
+        $this->initialized['isMember'] = true;
         $this->isMember = $isMember;
         return $this;
     }
@@ -148,6 +160,7 @@ class Status
      */
     public function setIsSearchable(bool $isSearchable) : self
     {
+        $this->initialized['isSearchable'] = true;
         $this->isSearchable = $isSearchable;
         return $this;
     }
@@ -169,6 +182,7 @@ class Status
      */
     public function setSortKey(int $sortKey) : self
     {
+        $this->initialized['sortKey'] = true;
         $this->sortKey = $sortKey;
         return $this;
     }
@@ -190,6 +204,7 @@ class Status
      */
     public function setSecurityLevelId(int $securityLevelId) : self
     {
+        $this->initialized['securityLevelId'] = true;
         $this->securityLevelId = $securityLevelId;
         return $this;
     }

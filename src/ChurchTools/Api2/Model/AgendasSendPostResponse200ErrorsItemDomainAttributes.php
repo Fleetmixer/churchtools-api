@@ -2,22 +2,30 @@
 
 namespace ChurchTools\Api2\Model;
 
-class AgendasSendPostResponse200ErrorsItemDomainAttributes
+class AgendasSendPostResponse200ErrorsItemDomainAttributes extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var string
      */
     protected $firstName;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $lastName;
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -26,7 +34,7 @@ class AgendasSendPostResponse200ErrorsItemDomainAttributes
         return $this->firstName;
     }
     /**
-     *
+     * 
      *
      * @param string $firstName
      *
@@ -34,11 +42,12 @@ class AgendasSendPostResponse200ErrorsItemDomainAttributes
      */
     public function setFirstName(string $firstName) : self
     {
+        $this->initialized['firstName'] = true;
         $this->firstName = $firstName;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -47,7 +56,7 @@ class AgendasSendPostResponse200ErrorsItemDomainAttributes
         return $this->lastName;
     }
     /**
-     *
+     * 
      *
      * @param string $lastName
      *
@@ -55,6 +64,7 @@ class AgendasSendPostResponse200ErrorsItemDomainAttributes
      */
     public function setLastName(string $lastName) : self
     {
+        $this->initialized['lastName'] = true;
         $this->lastName = $lastName;
         return $this;
     }

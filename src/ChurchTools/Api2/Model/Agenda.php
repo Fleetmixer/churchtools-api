@@ -2,34 +2,42 @@
 
 namespace ChurchTools\Api2\Model;
 
-class Agenda
+class Agenda extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var int
      */
     protected $id;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $name;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $series;
     /**
-     *
+     * 
      *
      * @var bool
      */
     protected $isFinal;
     /**
-     *
+     * 
      *
      * @var int
      */
@@ -41,13 +49,13 @@ class Agenda
      */
     protected $total;
     /**
-     *
+     * 
      *
      * @var AgendaItemsItem[]
      */
     protected $items;
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -56,7 +64,7 @@ class Agenda
         return $this->id;
     }
     /**
-     *
+     * 
      *
      * @param int $id
      *
@@ -64,11 +72,12 @@ class Agenda
      */
     public function setId(int $id) : self
     {
+        $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -77,7 +86,7 @@ class Agenda
         return $this->name;
     }
     /**
-     *
+     * 
      *
      * @param string $name
      *
@@ -85,11 +94,12 @@ class Agenda
      */
     public function setName(string $name) : self
     {
+        $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -98,7 +108,7 @@ class Agenda
         return $this->series;
     }
     /**
-     *
+     * 
      *
      * @param string $series
      *
@@ -106,11 +116,12 @@ class Agenda
      */
     public function setSeries(string $series) : self
     {
+        $this->initialized['series'] = true;
         $this->series = $series;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -119,7 +130,7 @@ class Agenda
         return $this->isFinal;
     }
     /**
-     *
+     * 
      *
      * @param bool $isFinal
      *
@@ -127,11 +138,12 @@ class Agenda
      */
     public function setIsFinal(bool $isFinal) : self
     {
+        $this->initialized['isFinal'] = true;
         $this->isFinal = $isFinal;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -140,7 +152,7 @@ class Agenda
         return $this->calendarId;
     }
     /**
-     *
+     * 
      *
      * @param int $calendarId
      *
@@ -148,6 +160,7 @@ class Agenda
      */
     public function setCalendarId(int $calendarId) : self
     {
+        $this->initialized['calendarId'] = true;
         $this->calendarId = $calendarId;
         return $this;
     }
@@ -169,11 +182,12 @@ class Agenda
      */
     public function setTotal(int $total) : self
     {
+        $this->initialized['total'] = true;
         $this->total = $total;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return AgendaItemsItem[]
      */
@@ -182,7 +196,7 @@ class Agenda
         return $this->items;
     }
     /**
-     *
+     * 
      *
      * @param AgendaItemsItem[] $items
      *
@@ -190,6 +204,7 @@ class Agenda
      */
     public function setItems(array $items) : self
     {
+        $this->initialized['items'] = true;
         $this->items = $items;
         return $this;
     }

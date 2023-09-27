@@ -2,8 +2,16 @@
 
 namespace ChurchTools\Api2\Model;
 
-class AgendaItemsItemResponsiblePersonsItem
+class AgendaItemsItemResponsiblePersonsItem extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * Name of the service, which is also the placeholder in the raw text string.
      *
@@ -17,7 +25,7 @@ class AgendaItemsItemResponsiblePersonsItem
      */
     protected $approved;
     /**
-     *
+     * 
      *
      * @var object
      */
@@ -40,6 +48,7 @@ class AgendaItemsItemResponsiblePersonsItem
      */
     public function setService(string $service) : self
     {
+        $this->initialized['service'] = true;
         $this->service = $service;
         return $this;
     }
@@ -61,11 +70,12 @@ class AgendaItemsItemResponsiblePersonsItem
      */
     public function setApproved(bool $approved) : self
     {
+        $this->initialized['approved'] = true;
         $this->approved = $approved;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return object
      */
@@ -74,7 +84,7 @@ class AgendaItemsItemResponsiblePersonsItem
         return $this->person;
     }
     /**
-     *
+     * 
      *
      * @param object $person
      *
@@ -82,6 +92,7 @@ class AgendaItemsItemResponsiblePersonsItem
      */
     public function setPerson($person) : self
     {
+        $this->initialized['person'] = true;
         $this->person = $person;
         return $this;
     }

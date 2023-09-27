@@ -2,21 +2,21 @@
 
 namespace ChurchTools\Api2\Endpoint;
 
-class PutStatusById extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jane\OpenApiRuntime\Client\Psr7Endpoint
+class PutStatusById extends \ChurchTools\Api2\Runtime\Client\BaseEndpoint implements \ChurchTools\Api2\Runtime\Client\Endpoint
 {
     protected $id;
     /**
-     *
+     * 
      *
      * @param int $id ID of status
-     * @param \ChurchTools\Api2\Model\StatusesIdPutBody $requestBody
+     * @param \ChurchTools\Api2\Model\StatusesIdPutBody $requestBody 
      */
     public function __construct(int $id, \ChurchTools\Api2\Model\StatusesIdPutBody $requestBody)
     {
         $this->id = $id;
         $this->body = $requestBody;
     }
-    use \Jane\OpenApiRuntime\Client\Psr7EndpointTrait;
+    use \ChurchTools\Api2\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'PUT';
@@ -42,10 +42,16 @@ class PutStatusById extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements 
      *
      * @return null|\ChurchTools\Api2\Model\StatusesIdPutResponse200
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
-        if (200 === $status && mb_strpos($contentType, 'application/json') !== false) {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
+        if (is_null($contentType) === false && (200 === $status && mb_strpos($contentType, 'application/json') !== false)) {
             return $serializer->deserialize($body, 'ChurchTools\\Api2\\Model\\StatusesIdPutResponse200', 'json');
         }
+    }
+    public function getAuthenticationScopes() : array
+    {
+        return array('login_token');
     }
 }

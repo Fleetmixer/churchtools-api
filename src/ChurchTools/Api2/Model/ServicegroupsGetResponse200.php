@@ -2,16 +2,24 @@
 
 namespace ChurchTools\Api2\Model;
 
-class ServicegroupsGetResponse200
+class ServicegroupsGetResponse200 extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var ServiceGroup[]
      */
     protected $data;
     /**
-     *
+     * 
      *
      * @return ServiceGroup[]
      */
@@ -20,7 +28,7 @@ class ServicegroupsGetResponse200
         return $this->data;
     }
     /**
-     *
+     * 
      *
      * @param ServiceGroup[] $data
      *
@@ -28,6 +36,7 @@ class ServicegroupsGetResponse200
      */
     public function setData(array $data) : self
     {
+        $this->initialized['data'] = true;
         $this->data = $data;
         return $this;
     }

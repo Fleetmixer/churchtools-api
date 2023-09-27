@@ -2,16 +2,24 @@
 
 namespace ChurchTools\Api2\Model;
 
-class CalendarsAppointmentsTemplatesTemplateIdPutResponse200
+class CalendarsAppointmentsTemplatesTemplateIdPutResponse200 extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var AppointmentTemplate
      */
     protected $data;
     /**
-     *
+     * 
      *
      * @return AppointmentTemplate
      */
@@ -20,7 +28,7 @@ class CalendarsAppointmentsTemplatesTemplateIdPutResponse200
         return $this->data;
     }
     /**
-     *
+     * 
      *
      * @param AppointmentTemplate $data
      *
@@ -28,6 +36,7 @@ class CalendarsAppointmentsTemplatesTemplateIdPutResponse200
      */
     public function setData(AppointmentTemplate $data) : self
     {
+        $this->initialized['data'] = true;
         $this->data = $data;
         return $this;
     }

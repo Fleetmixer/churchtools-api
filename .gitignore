@@ -15,3 +15,4 @@ composer.lock
 /src/ChurchTools/Api2/Exception
 /src/ChurchTools/Api2/Model
 /src/ChurchTools/Api2/Normalizer
+composer.phar

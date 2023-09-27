@@ -2,8 +2,16 @@
 
 namespace ChurchTools\Api2\Model;
 
-class AgendaItemsItemResponsible
+class AgendaItemsItemResponsible extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * Raw text string. You need to search-replace the placeholders yourself.
      *
@@ -34,6 +42,7 @@ class AgendaItemsItemResponsible
      */
     public function setText(string $text) : self
     {
+        $this->initialized['text'] = true;
         $this->text = $text;
         return $this;
     }
@@ -55,6 +64,7 @@ class AgendaItemsItemResponsible
      */
     public function setPersons(array $persons) : self
     {
+        $this->initialized['persons'] = true;
         $this->persons = $persons;
         return $this;
     }

@@ -2,12 +2,12 @@
 
 namespace ChurchTools\Api2\Endpoint;
 
-class DeleteFiles extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jane\OpenApiRuntime\Client\Psr7Endpoint
+class DeleteFiles extends \ChurchTools\Api2\Runtime\Client\BaseEndpoint implements \ChurchTools\Api2\Runtime\Client\Endpoint
 {
     protected $domainType;
     protected $domainIdentifier;
     /**
-     *
+     * 
      *
      * @param string $domainType The domain type. Currently supported are 'avatar', 'groupimage', 'logo', 'attatchments', 'html_template', 'service', 'song_arrangement', 'importtable', 'person', 'familyavatar', 'wiki_.?'.
      * @param string $domainIdentifier the domain identifier
@@ -17,7 +17,7 @@ class DeleteFiles extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \J
         $this->domainType = $domainType;
         $this->domainIdentifier = $domainIdentifier;
     }
-    use \Jane\OpenApiRuntime\Client\Psr7EndpointTrait;
+    use \ChurchTools\Api2\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'DELETE';
@@ -30,6 +30,10 @@ class DeleteFiles extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \J
     {
         return array(array(), null);
     }
+    public function getExtraHeaders() : array
+    {
+        return array('Accept' => array('text/plain'));
+    }
     /**
      * {@inheritdoc}
      *
@@ -37,15 +41,21 @@ class DeleteFiles extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \J
      *
      * @return null
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if (204 === $status) {
             return null;
         }
         if (401 === $status) {
         }
         if (403 === $status) {
-            throw new \ChurchTools\Api2\Exception\DeleteFilesForbiddenException();
+            throw new \ChurchTools\Api2\Exception\DeleteFilesForbiddenException($response);
         }
+    }
+    public function getAuthenticationScopes() : array
+    {
+        return array('login_token');
     }
 }

@@ -2,16 +2,24 @@
 
 namespace ChurchTools\Api2\Model;
 
-class Group
+class Group extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var int
      */
     protected $id;
     /**
-     *
+     * 
      *
      * @var string
      */
@@ -23,31 +31,31 @@ class Group
      */
     protected $securityLevelForGroup;
     /**
-     *
+     * 
      *
      * @var GroupInformation
      */
     protected $information;
     /**
-     *
+     * 
      *
      * @var GroupSettings
      */
     protected $settings;
     /**
-     *
+     * 
      *
      * @var GroupFollowUp
      */
     protected $followUp;
     /**
-     *
+     * 
      *
      * @var GroupRolesItem[]
      */
     protected $roles;
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -56,7 +64,7 @@ class Group
         return $this->id;
     }
     /**
-     *
+     * 
      *
      * @param int $id
      *
@@ -64,11 +72,12 @@ class Group
      */
     public function setId(int $id) : self
     {
+        $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -77,7 +86,7 @@ class Group
         return $this->name;
     }
     /**
-     *
+     * 
      *
      * @param string $name
      *
@@ -85,6 +94,7 @@ class Group
      */
     public function setName(string $name) : self
     {
+        $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
     }
@@ -106,11 +116,12 @@ class Group
      */
     public function setSecurityLevelForGroup(int $securityLevelForGroup) : self
     {
+        $this->initialized['securityLevelForGroup'] = true;
         $this->securityLevelForGroup = $securityLevelForGroup;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return GroupInformation
      */
@@ -119,7 +130,7 @@ class Group
         return $this->information;
     }
     /**
-     *
+     * 
      *
      * @param GroupInformation $information
      *
@@ -127,11 +138,12 @@ class Group
      */
     public function setInformation(GroupInformation $information) : self
     {
+        $this->initialized['information'] = true;
         $this->information = $information;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return GroupSettings
      */
@@ -140,7 +152,7 @@ class Group
         return $this->settings;
     }
     /**
-     *
+     * 
      *
      * @param GroupSettings $settings
      *
@@ -148,11 +160,12 @@ class Group
      */
     public function setSettings(GroupSettings $settings) : self
     {
+        $this->initialized['settings'] = true;
         $this->settings = $settings;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return GroupFollowUp
      */
@@ -161,7 +174,7 @@ class Group
         return $this->followUp;
     }
     /**
-     *
+     * 
      *
      * @param GroupFollowUp $followUp
      *
@@ -169,11 +182,12 @@ class Group
      */
     public function setFollowUp(GroupFollowUp $followUp) : self
     {
+        $this->initialized['followUp'] = true;
         $this->followUp = $followUp;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return GroupRolesItem[]
      */
@@ -182,7 +196,7 @@ class Group
         return $this->roles;
     }
     /**
-     *
+     * 
      *
      * @param GroupRolesItem[] $roles
      *
@@ -190,6 +204,7 @@ class Group
      */
     public function setRoles(array $roles) : self
     {
+        $this->initialized['roles'] = true;
         $this->roles = $roles;
         return $this;
     }

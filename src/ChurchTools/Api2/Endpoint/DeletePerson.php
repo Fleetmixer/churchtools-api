@@ -2,11 +2,11 @@
 
 namespace ChurchTools\Api2\Endpoint;
 
-class DeletePerson extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jane\OpenApiRuntime\Client\Psr7Endpoint
+class DeletePerson extends \ChurchTools\Api2\Runtime\Client\BaseEndpoint implements \ChurchTools\Api2\Runtime\Client\Endpoint
 {
     protected $id;
     /**
-     *
+     * 
      *
      * @param string $id ID or GUID of person
      */
@@ -14,7 +14,7 @@ class DeletePerson extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \
     {
         $this->id = $id;
     }
-    use \Jane\OpenApiRuntime\Client\Psr7EndpointTrait;
+    use \ChurchTools\Api2\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'DELETE';
@@ -35,16 +35,22 @@ class DeletePerson extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \
      *
      * @return null
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if (204 === $status) {
             return null;
         }
         if (401 === $status) {
-            throw new \ChurchTools\Api2\Exception\DeletePersonUnauthorizedException();
+            throw new \ChurchTools\Api2\Exception\DeletePersonUnauthorizedException($response);
         }
         if (403 === $status) {
-            throw new \ChurchTools\Api2\Exception\DeletePersonForbiddenException();
+            throw new \ChurchTools\Api2\Exception\DeletePersonForbiddenException($response);
         }
+    }
+    public function getAuthenticationScopes() : array
+    {
+        return array('login_token');
     }
 }

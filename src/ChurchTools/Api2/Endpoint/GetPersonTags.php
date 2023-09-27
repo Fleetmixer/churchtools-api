@@ -2,11 +2,11 @@
 
 namespace ChurchTools\Api2\Endpoint;
 
-class GetPersonTags extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jane\OpenApiRuntime\Client\Psr7Endpoint
+class GetPersonTags extends \ChurchTools\Api2\Runtime\Client\BaseEndpoint implements \ChurchTools\Api2\Runtime\Client\Endpoint
 {
     protected $id;
     /**
-     *
+     * 
      *
      * @param string $id ID or GUID of person
      */
@@ -14,7 +14,7 @@ class GetPersonTags extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements 
     {
         $this->id = $id;
     }
-    use \Jane\OpenApiRuntime\Client\Psr7EndpointTrait;
+    use \ChurchTools\Api2\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'GET';
@@ -39,16 +39,22 @@ class GetPersonTags extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements 
      *
      * @return null|\ChurchTools\Api2\Model\PersonsIdTagsGetResponse200
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
-        if (200 === $status && mb_strpos($contentType, 'application/json') !== false) {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
+        if (is_null($contentType) === false && (200 === $status && mb_strpos($contentType, 'application/json') !== false)) {
             return $serializer->deserialize($body, 'ChurchTools\\Api2\\Model\\PersonsIdTagsGetResponse200', 'json');
         }
         if (401 === $status) {
-            throw new \ChurchTools\Api2\Exception\GetPersonTagsUnauthorizedException();
+            throw new \ChurchTools\Api2\Exception\GetPersonTagsUnauthorizedException($response);
         }
         if (403 === $status) {
-            throw new \ChurchTools\Api2\Exception\GetPersonTagsForbiddenException();
+            throw new \ChurchTools\Api2\Exception\GetPersonTagsForbiddenException($response);
         }
+    }
+    public function getAuthenticationScopes() : array
+    {
+        return array('login_token');
     }
 }

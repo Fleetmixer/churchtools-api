@@ -2,8 +2,16 @@
 
 namespace ChurchTools\Api2\Model;
 
-class AgendasSendPostBody
+class AgendasSendPostBody extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * Array of event IDs. Multiple event IDs MUST be integrated events, i.e. all events share the same agenda.
      *
@@ -52,6 +60,7 @@ class AgendasSendPostBody
      */
     public function setEventIds(array $eventIds) : self
     {
+        $this->initialized['eventIds'] = true;
         $this->eventIds = $eventIds;
         return $this;
     }
@@ -73,6 +82,7 @@ class AgendasSendPostBody
      */
     public function setRecipients(array $recipients) : self
     {
+        $this->initialized['recipients'] = true;
         $this->recipients = $recipients;
         return $this;
     }
@@ -94,6 +104,7 @@ class AgendasSendPostBody
      */
     public function setSendCopyToMe(bool $sendCopyToMe) : self
     {
+        $this->initialized['sendCopyToMe'] = true;
         $this->sendCopyToMe = $sendCopyToMe;
         return $this;
     }
@@ -115,6 +126,7 @@ class AgendasSendPostBody
      */
     public function setSubject(string $subject) : self
     {
+        $this->initialized['subject'] = true;
         $this->subject = $subject;
         return $this;
     }
@@ -136,6 +148,7 @@ class AgendasSendPostBody
      */
     public function setBody(string $body) : self
     {
+        $this->initialized['body'] = true;
         $this->body = $body;
         return $this;
     }

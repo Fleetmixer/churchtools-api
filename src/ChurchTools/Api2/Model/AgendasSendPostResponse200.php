@@ -2,28 +2,36 @@
 
 namespace ChurchTools\Api2\Model;
 
-class AgendasSendPostResponse200
+class AgendasSendPostResponse200 extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var string
      */
     protected $message;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $translatedMessage;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $messageKey;
     /**
-     *
+     * 
      *
      * @var AgendasSendPostResponse200Args
      */
@@ -35,7 +43,7 @@ class AgendasSendPostResponse200
      */
     protected $errors;
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -44,7 +52,7 @@ class AgendasSendPostResponse200
         return $this->message;
     }
     /**
-     *
+     * 
      *
      * @param string $message
      *
@@ -52,11 +60,12 @@ class AgendasSendPostResponse200
      */
     public function setMessage(string $message) : self
     {
+        $this->initialized['message'] = true;
         $this->message = $message;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -65,7 +74,7 @@ class AgendasSendPostResponse200
         return $this->translatedMessage;
     }
     /**
-     *
+     * 
      *
      * @param string $translatedMessage
      *
@@ -73,11 +82,12 @@ class AgendasSendPostResponse200
      */
     public function setTranslatedMessage(string $translatedMessage) : self
     {
+        $this->initialized['translatedMessage'] = true;
         $this->translatedMessage = $translatedMessage;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -86,7 +96,7 @@ class AgendasSendPostResponse200
         return $this->messageKey;
     }
     /**
-     *
+     * 
      *
      * @param string $messageKey
      *
@@ -94,11 +104,12 @@ class AgendasSendPostResponse200
      */
     public function setMessageKey(string $messageKey) : self
     {
+        $this->initialized['messageKey'] = true;
         $this->messageKey = $messageKey;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return AgendasSendPostResponse200Args
      */
@@ -107,7 +118,7 @@ class AgendasSendPostResponse200
         return $this->args;
     }
     /**
-     *
+     * 
      *
      * @param AgendasSendPostResponse200Args $args
      *
@@ -115,6 +126,7 @@ class AgendasSendPostResponse200
      */
     public function setArgs(AgendasSendPostResponse200Args $args) : self
     {
+        $this->initialized['args'] = true;
         $this->args = $args;
         return $this;
     }
@@ -136,6 +148,7 @@ class AgendasSendPostResponse200
      */
     public function setErrors(array $errors) : self
     {
+        $this->initialized['errors'] = true;
         $this->errors = $errors;
         return $this;
     }

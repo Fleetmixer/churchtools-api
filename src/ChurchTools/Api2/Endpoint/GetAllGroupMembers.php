@@ -2,7 +2,7 @@
 
 namespace ChurchTools\Api2\Endpoint;
 
-class GetAllGroupMembers extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jane\OpenApiRuntime\Client\Psr7Endpoint
+class GetAllGroupMembers extends \ChurchTools\Api2\Runtime\Client\BaseEndpoint implements \ChurchTools\Api2\Runtime\Client\Endpoint
 {
     protected $id;
     /**
@@ -19,7 +19,7 @@ class GetAllGroupMembers extends \Jane\OpenApiRuntime\Client\BaseEndpoint implem
         $this->id = $id;
         $this->queryParameters = $queryParameters;
     }
-    use \Jane\OpenApiRuntime\Client\Psr7EndpointTrait;
+    use \ChurchTools\Api2\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'GET';
@@ -42,8 +42,8 @@ class GetAllGroupMembers extends \Jane\OpenApiRuntime\Client\BaseEndpoint implem
         $optionsResolver->setDefined(array('page', 'limit'));
         $optionsResolver->setRequired(array());
         $optionsResolver->setDefaults(array('page' => 1, 'limit' => 10));
-        $optionsResolver->setAllowedTypes('page', array('int'));
-        $optionsResolver->setAllowedTypes('limit', array('int'));
+        $optionsResolver->addAllowedTypes('page', array('int'));
+        $optionsResolver->addAllowedTypes('limit', array('int'));
         return $optionsResolver;
     }
     /**
@@ -54,16 +54,22 @@ class GetAllGroupMembers extends \Jane\OpenApiRuntime\Client\BaseEndpoint implem
      *
      * @return null|\ChurchTools\Api2\Model\GroupsIdMembersGetResponse200
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
-        if (200 === $status && mb_strpos($contentType, 'application/json') !== false) {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
+        if (is_null($contentType) === false && (200 === $status && mb_strpos($contentType, 'application/json') !== false)) {
             return $serializer->deserialize($body, 'ChurchTools\\Api2\\Model\\GroupsIdMembersGetResponse200', 'json');
         }
         if (401 === $status) {
-            throw new \ChurchTools\Api2\Exception\GetAllGroupMembersUnauthorizedException();
+            throw new \ChurchTools\Api2\Exception\GetAllGroupMembersUnauthorizedException($response);
         }
         if (403 === $status) {
-            throw new \ChurchTools\Api2\Exception\GetAllGroupMembersForbiddenException();
+            throw new \ChurchTools\Api2\Exception\GetAllGroupMembersForbiddenException($response);
         }
+    }
+    public function getAuthenticationScopes() : array
+    {
+        return array('login_token');
     }
 }

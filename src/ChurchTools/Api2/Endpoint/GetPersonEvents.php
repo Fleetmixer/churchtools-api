@@ -2,9 +2,10 @@
 
 namespace ChurchTools\Api2\Endpoint;
 
-class GetPersonEvents extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jane\OpenApiRuntime\Client\Psr7Endpoint
+class GetPersonEvents extends \ChurchTools\Api2\Runtime\Client\BaseEndpoint implements \ChurchTools\Api2\Runtime\Client\Endpoint
 {
     protected $id;
+    protected $accept;
     /**
      * Gets a list of all events that a person is involved
      *
@@ -12,13 +13,15 @@ class GetPersonEvents extends \Jane\OpenApiRuntime\Client\BaseEndpoint implement
      * @param array $queryParameters {
      *     @var string $from Start date from when events are returned. Default value: today
      * }
+     * @param array $accept Accept content header application/json|text/plain
      */
-    public function __construct(string $id, array $queryParameters = array())
+    public function __construct(string $id, array $queryParameters = array(), array $accept = array())
     {
         $this->id = $id;
         $this->queryParameters = $queryParameters;
+        $this->accept = $accept;
     }
-    use \Jane\OpenApiRuntime\Client\Psr7EndpointTrait;
+    use \ChurchTools\Api2\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'GET';
@@ -33,7 +36,10 @@ class GetPersonEvents extends \Jane\OpenApiRuntime\Client\BaseEndpoint implement
     }
     public function getExtraHeaders() : array
     {
-        return array('Accept' => array('application/json'));
+        if (empty($this->accept)) {
+            return array('Accept' => array('application/json', 'text/plain'));
+        }
+        return $this->accept;
     }
     protected function getQueryOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
     {
@@ -41,7 +47,7 @@ class GetPersonEvents extends \Jane\OpenApiRuntime\Client\BaseEndpoint implement
         $optionsResolver->setDefined(array('from'));
         $optionsResolver->setRequired(array());
         $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('from', array('string'));
+        $optionsResolver->addAllowedTypes('from', array('string'));
         return $optionsResolver;
     }
     /**
@@ -51,15 +57,21 @@ class GetPersonEvents extends \Jane\OpenApiRuntime\Client\BaseEndpoint implement
      *
      * @return null|\ChurchTools\Api2\Model\PersonsIdEventsGetResponse200
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
-        if (200 === $status && mb_strpos($contentType, 'application/json') !== false) {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
+        if (is_null($contentType) === false && (200 === $status && mb_strpos($contentType, 'application/json') !== false)) {
             return $serializer->deserialize($body, 'ChurchTools\\Api2\\Model\\PersonsIdEventsGetResponse200', 'json');
         }
         if (401 === $status) {
         }
         if (403 === $status) {
-            throw new \ChurchTools\Api2\Exception\GetPersonEventsForbiddenException();
+            throw new \ChurchTools\Api2\Exception\GetPersonEventsForbiddenException($response);
         }
+    }
+    public function getAuthenticationScopes() : array
+    {
+        return array('login_token');
     }
 }

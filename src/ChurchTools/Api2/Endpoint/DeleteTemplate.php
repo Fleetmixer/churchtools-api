@@ -2,11 +2,11 @@
 
 namespace ChurchTools\Api2\Endpoint;
 
-class DeleteTemplate extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jane\OpenApiRuntime\Client\Psr7Endpoint
+class DeleteTemplate extends \ChurchTools\Api2\Runtime\Client\BaseEndpoint implements \ChurchTools\Api2\Runtime\Client\Endpoint
 {
     protected $templateId;
     /**
-     *
+     * 
      *
      * @param int $templateId ID of appointment template
      */
@@ -14,7 +14,7 @@ class DeleteTemplate extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements
     {
         $this->templateId = $templateId;
     }
-    use \Jane\OpenApiRuntime\Client\Psr7EndpointTrait;
+    use \ChurchTools\Api2\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'DELETE';
@@ -27,6 +27,10 @@ class DeleteTemplate extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements
     {
         return array(array(), null);
     }
+    public function getExtraHeaders() : array
+    {
+        return array('Accept' => array('text/plain'));
+    }
     /**
      * {@inheritdoc}
      *
@@ -35,18 +39,24 @@ class DeleteTemplate extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements
      *
      * @return null
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if (204 === $status) {
             return null;
         }
         if (401 === $status) {
         }
         if (403 === $status) {
-            throw new \ChurchTools\Api2\Exception\DeleteTemplateForbiddenException();
+            throw new \ChurchTools\Api2\Exception\DeleteTemplateForbiddenException($response);
         }
         if (404 === $status) {
-            throw new \ChurchTools\Api2\Exception\DeleteTemplateNotFoundException();
+            throw new \ChurchTools\Api2\Exception\DeleteTemplateNotFoundException($response);
         }
+    }
+    public function getAuthenticationScopes() : array
+    {
+        return array('login_token');
     }
 }

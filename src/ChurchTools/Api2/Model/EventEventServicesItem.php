@@ -2,70 +2,78 @@
 
 namespace ChurchTools\Api2\Model;
 
-class EventEventServicesItem
+class EventEventServicesItem extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var int
      */
     protected $id;
     /**
-     *
+     * 
      *
      * @var object
      */
     protected $person;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $name;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $serviceId;
     /**
-     *
+     * 
      *
      * @var bool
      */
     protected $agreed;
     /**
-     *
+     * 
      *
      * @var bool
      */
     protected $isValid;
     /**
+     * 
      *
-     *
-     * @var string
+     * @var \DateTime
      */
     protected $requestedDate;
     /**
-     *
+     * 
      *
      * @var object
      */
     protected $requesterPerson;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $comment;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $counter;
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -74,7 +82,7 @@ class EventEventServicesItem
         return $this->id;
     }
     /**
-     *
+     * 
      *
      * @param int $id
      *
@@ -82,11 +90,12 @@ class EventEventServicesItem
      */
     public function setId(int $id) : self
     {
+        $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return object
      */
@@ -95,7 +104,7 @@ class EventEventServicesItem
         return $this->person;
     }
     /**
-     *
+     * 
      *
      * @param object $person
      *
@@ -103,11 +112,12 @@ class EventEventServicesItem
      */
     public function setPerson($person) : self
     {
+        $this->initialized['person'] = true;
         $this->person = $person;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -116,7 +126,7 @@ class EventEventServicesItem
         return $this->name;
     }
     /**
-     *
+     * 
      *
      * @param string $name
      *
@@ -124,11 +134,12 @@ class EventEventServicesItem
      */
     public function setName(string $name) : self
     {
+        $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -137,7 +148,7 @@ class EventEventServicesItem
         return $this->serviceId;
     }
     /**
-     *
+     * 
      *
      * @param int $serviceId
      *
@@ -145,11 +156,12 @@ class EventEventServicesItem
      */
     public function setServiceId(int $serviceId) : self
     {
+        $this->initialized['serviceId'] = true;
         $this->serviceId = $serviceId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -158,7 +170,7 @@ class EventEventServicesItem
         return $this->agreed;
     }
     /**
-     *
+     * 
      *
      * @param bool $agreed
      *
@@ -166,11 +178,12 @@ class EventEventServicesItem
      */
     public function setAgreed(bool $agreed) : self
     {
+        $this->initialized['agreed'] = true;
         $this->agreed = $agreed;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -179,7 +192,7 @@ class EventEventServicesItem
         return $this->isValid;
     }
     /**
-     *
+     * 
      *
      * @param bool $isValid
      *
@@ -187,32 +200,34 @@ class EventEventServicesItem
      */
     public function setIsValid(bool $isValid) : self
     {
+        $this->initialized['isValid'] = true;
         $this->isValid = $isValid;
         return $this;
     }
     /**
+     * 
      *
-     *
-     * @return string
+     * @return \DateTime
      */
-    public function getRequestedDate() : string
+    public function getRequestedDate() : \DateTime
     {
         return $this->requestedDate;
     }
     /**
+     * 
      *
-     *
-     * @param string $requestedDate
+     * @param \DateTime $requestedDate
      *
      * @return self
      */
-    public function setRequestedDate(string $requestedDate) : self
+    public function setRequestedDate(\DateTime $requestedDate) : self
     {
+        $this->initialized['requestedDate'] = true;
         $this->requestedDate = $requestedDate;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return object
      */
@@ -221,7 +236,7 @@ class EventEventServicesItem
         return $this->requesterPerson;
     }
     /**
-     *
+     * 
      *
      * @param object $requesterPerson
      *
@@ -229,11 +244,12 @@ class EventEventServicesItem
      */
     public function setRequesterPerson($requesterPerson) : self
     {
+        $this->initialized['requesterPerson'] = true;
         $this->requesterPerson = $requesterPerson;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -242,7 +258,7 @@ class EventEventServicesItem
         return $this->comment;
     }
     /**
-     *
+     * 
      *
      * @param string $comment
      *
@@ -250,11 +266,12 @@ class EventEventServicesItem
      */
     public function setComment(string $comment) : self
     {
+        $this->initialized['comment'] = true;
         $this->comment = $comment;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -263,7 +280,7 @@ class EventEventServicesItem
         return $this->counter;
     }
     /**
-     *
+     * 
      *
      * @param int $counter
      *
@@ -271,6 +288,7 @@ class EventEventServicesItem
      */
     public function setCounter(int $counter) : self
     {
+        $this->initialized['counter'] = true;
         $this->counter = $counter;
         return $this;
     }

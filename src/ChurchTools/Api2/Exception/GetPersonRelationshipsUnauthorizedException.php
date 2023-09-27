@@ -2,10 +2,19 @@
 
 namespace ChurchTools\Api2\Exception;
 
-class GetPersonRelationshipsUnauthorizedException extends \RuntimeException implements ClientException
+class GetPersonRelationshipsUnauthorizedException extends UnauthorizedException
 {
-    public function __construct()
+    /**
+     * @var \Psr\Http\Message\ResponseInterface
+     */
+    private $response;
+    public function __construct(\Psr\Http\Message\ResponseInterface $response = null)
     {
-        parent::__construct('Unauthorized', 401);
+        parent::__construct('Unauthorized');
+        $this->response = $response;
+    }
+    public function getResponse() : ?\Psr\Http\Message\ResponseInterface
+    {
+        return $this->response;
     }
 }

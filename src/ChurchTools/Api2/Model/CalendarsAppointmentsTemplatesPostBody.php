@@ -2,64 +2,72 @@
 
 namespace ChurchTools\Api2\Model;
 
-class CalendarsAppointmentsTemplatesPostBody
+class CalendarsAppointmentsTemplatesPostBody extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var string
      */
     protected $title;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $comment;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $startTime;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $duration;
     /**
-     *
+     * 
      *
      * @var bool
      */
     protected $allDay;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $note;
     /**
-     *
+     * 
      *
      * @var bool
      */
     protected $isInternal;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $categoryId;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $repeatId;
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -68,7 +76,7 @@ class CalendarsAppointmentsTemplatesPostBody
         return $this->title;
     }
     /**
-     *
+     * 
      *
      * @param string $title
      *
@@ -76,11 +84,12 @@ class CalendarsAppointmentsTemplatesPostBody
      */
     public function setTitle(string $title) : self
     {
+        $this->initialized['title'] = true;
         $this->title = $title;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -89,7 +98,7 @@ class CalendarsAppointmentsTemplatesPostBody
         return $this->comment;
     }
     /**
-     *
+     * 
      *
      * @param string $comment
      *
@@ -97,11 +106,12 @@ class CalendarsAppointmentsTemplatesPostBody
      */
     public function setComment(string $comment) : self
     {
+        $this->initialized['comment'] = true;
         $this->comment = $comment;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -110,7 +120,7 @@ class CalendarsAppointmentsTemplatesPostBody
         return $this->startTime;
     }
     /**
-     *
+     * 
      *
      * @param string $startTime
      *
@@ -118,11 +128,12 @@ class CalendarsAppointmentsTemplatesPostBody
      */
     public function setStartTime(string $startTime) : self
     {
+        $this->initialized['startTime'] = true;
         $this->startTime = $startTime;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -131,7 +142,7 @@ class CalendarsAppointmentsTemplatesPostBody
         return $this->duration;
     }
     /**
-     *
+     * 
      *
      * @param int $duration
      *
@@ -139,11 +150,12 @@ class CalendarsAppointmentsTemplatesPostBody
      */
     public function setDuration(int $duration) : self
     {
+        $this->initialized['duration'] = true;
         $this->duration = $duration;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -152,7 +164,7 @@ class CalendarsAppointmentsTemplatesPostBody
         return $this->allDay;
     }
     /**
-     *
+     * 
      *
      * @param bool $allDay
      *
@@ -160,11 +172,12 @@ class CalendarsAppointmentsTemplatesPostBody
      */
     public function setAllDay(bool $allDay) : self
     {
+        $this->initialized['allDay'] = true;
         $this->allDay = $allDay;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -173,7 +186,7 @@ class CalendarsAppointmentsTemplatesPostBody
         return $this->note;
     }
     /**
-     *
+     * 
      *
      * @param string $note
      *
@@ -181,11 +194,12 @@ class CalendarsAppointmentsTemplatesPostBody
      */
     public function setNote(string $note) : self
     {
+        $this->initialized['note'] = true;
         $this->note = $note;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -194,7 +208,7 @@ class CalendarsAppointmentsTemplatesPostBody
         return $this->isInternal;
     }
     /**
-     *
+     * 
      *
      * @param bool $isInternal
      *
@@ -202,11 +216,12 @@ class CalendarsAppointmentsTemplatesPostBody
      */
     public function setIsInternal(bool $isInternal) : self
     {
+        $this->initialized['isInternal'] = true;
         $this->isInternal = $isInternal;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -215,7 +230,7 @@ class CalendarsAppointmentsTemplatesPostBody
         return $this->categoryId;
     }
     /**
-     *
+     * 
      *
      * @param int $categoryId
      *
@@ -223,11 +238,12 @@ class CalendarsAppointmentsTemplatesPostBody
      */
     public function setCategoryId(int $categoryId) : self
     {
+        $this->initialized['categoryId'] = true;
         $this->categoryId = $categoryId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -236,7 +252,7 @@ class CalendarsAppointmentsTemplatesPostBody
         return $this->repeatId;
     }
     /**
-     *
+     * 
      *
      * @param int $repeatId
      *
@@ -244,6 +260,7 @@ class CalendarsAppointmentsTemplatesPostBody
      */
     public function setRepeatId(int $repeatId) : self
     {
+        $this->initialized['repeatId'] = true;
         $this->repeatId = $repeatId;
         return $this;
     }

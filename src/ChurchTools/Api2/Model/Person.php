@@ -2,10 +2,18 @@
 
 namespace ChurchTools\Api2\Model;
 
-class Person
+class Person extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var int
      */
@@ -23,271 +31,271 @@ class Person
      */
     protected $editSecurityLevelForPerson;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $title;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $firstName;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $lastName;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $nickname;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $job;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $street;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $addressAddition;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $zip;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $city;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $country;
     /**
-     *
+     * 
      *
      * @var float|null
      */
     protected $latitude;
     /**
-     *
+     * 
      *
      * @var float|null
      */
     protected $longitude;
     /**
-     *
+     * 
      *
      * @var float|null
      */
     protected $latitudeLoose;
     /**
-     *
+     * 
      *
      * @var float|null
      */
     protected $longitudeLoose;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $phonePrivate;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $phoneWork;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $mobile;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $fax;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $birthName;
     /**
+     * 
      *
-     *
-     * @var string|null
+     * @var \DateTime|null
      */
     protected $birthday;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $birthplace;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $imageUrl;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $familyImageUrl;
     /**
-     *
+     * 
      *
      * @var int|null
      */
     protected $sexId;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $email;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $cmsUserId;
     /**
-     *
+     * 
      *
      * @var int|null
      */
     protected $optigemId;
     /**
-     *
+     * 
      *
      * @var PersonPrivacyPolicyAgreement
      */
     protected $privacyPolicyAgreement;
     /**
-     *
+     * 
      *
      * @var int|null
      */
     protected $nationalityId;
     /**
-     *
+     * 
      *
      * @var int|null
      */
     protected $familyStatusId;
     /**
+     * 
      *
-     *
-     * @var string|null
+     * @var \DateTime|null
      */
     protected $weddingDate;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $campusId;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $statusId;
     /**
-     *
+     * 
      *
      * @var \DateTime|null
      */
     protected $firstContact;
     /**
+     * 
      *
-     *
-     * @var string|null
+     * @var \DateTime|null
      */
     protected $dateOfBelonging;
     /**
-     *
+     * 
      *
      * @var \DateTime|null
      */
     protected $dateOfEntry;
     /**
-     *
+     * 
      *
      * @var \DateTime|null
      */
     protected $dateOfResign;
     /**
+     * 
      *
-     *
-     * @var string|null
+     * @var \DateTime|null
      */
     protected $dateOfBaptism;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $placeOfBaptism;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $baptisedBy;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $referredBy;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $referredTo;
     /**
-     *
+     * 
      *
      * @var int|null
      */
     protected $growPathId;
     /**
-     *
+     * 
      *
      * @var bool
      */
     protected $isArchived;
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -296,7 +304,7 @@ class Person
         return $this->id;
     }
     /**
-     *
+     * 
      *
      * @param int $id
      *
@@ -304,6 +312,7 @@ class Person
      */
     public function setId(int $id) : self
     {
+        $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
@@ -325,6 +334,7 @@ class Person
      */
     public function setSecurityLevelForPerson(int $securityLevelForPerson) : self
     {
+        $this->initialized['securityLevelForPerson'] = true;
         $this->securityLevelForPerson = $securityLevelForPerson;
         return $this;
     }
@@ -346,11 +356,12 @@ class Person
      */
     public function setEditSecurityLevelForPerson(int $editSecurityLevelForPerson) : self
     {
+        $this->initialized['editSecurityLevelForPerson'] = true;
         $this->editSecurityLevelForPerson = $editSecurityLevelForPerson;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -359,7 +370,7 @@ class Person
         return $this->title;
     }
     /**
-     *
+     * 
      *
      * @param string|null $title
      *
@@ -367,11 +378,12 @@ class Person
      */
     public function setTitle(?string $title) : self
     {
+        $this->initialized['title'] = true;
         $this->title = $title;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -380,7 +392,7 @@ class Person
         return $this->firstName;
     }
     /**
-     *
+     * 
      *
      * @param string|null $firstName
      *
@@ -388,11 +400,12 @@ class Person
      */
     public function setFirstName(?string $firstName) : self
     {
+        $this->initialized['firstName'] = true;
         $this->firstName = $firstName;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -401,7 +414,7 @@ class Person
         return $this->lastName;
     }
     /**
-     *
+     * 
      *
      * @param string|null $lastName
      *
@@ -409,11 +422,12 @@ class Person
      */
     public function setLastName(?string $lastName) : self
     {
+        $this->initialized['lastName'] = true;
         $this->lastName = $lastName;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -422,7 +436,7 @@ class Person
         return $this->nickname;
     }
     /**
-     *
+     * 
      *
      * @param string|null $nickname
      *
@@ -430,11 +444,12 @@ class Person
      */
     public function setNickname(?string $nickname) : self
     {
+        $this->initialized['nickname'] = true;
         $this->nickname = $nickname;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -443,7 +458,7 @@ class Person
         return $this->job;
     }
     /**
-     *
+     * 
      *
      * @param string|null $job
      *
@@ -451,11 +466,12 @@ class Person
      */
     public function setJob(?string $job) : self
     {
+        $this->initialized['job'] = true;
         $this->job = $job;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -464,7 +480,7 @@ class Person
         return $this->street;
     }
     /**
-     *
+     * 
      *
      * @param string|null $street
      *
@@ -472,11 +488,12 @@ class Person
      */
     public function setStreet(?string $street) : self
     {
+        $this->initialized['street'] = true;
         $this->street = $street;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -485,7 +502,7 @@ class Person
         return $this->addressAddition;
     }
     /**
-     *
+     * 
      *
      * @param string|null $addressAddition
      *
@@ -493,11 +510,12 @@ class Person
      */
     public function setAddressAddition(?string $addressAddition) : self
     {
+        $this->initialized['addressAddition'] = true;
         $this->addressAddition = $addressAddition;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -506,7 +524,7 @@ class Person
         return $this->zip;
     }
     /**
-     *
+     * 
      *
      * @param string|null $zip
      *
@@ -514,11 +532,12 @@ class Person
      */
     public function setZip(?string $zip) : self
     {
+        $this->initialized['zip'] = true;
         $this->zip = $zip;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -527,7 +546,7 @@ class Person
         return $this->city;
     }
     /**
-     *
+     * 
      *
      * @param string|null $city
      *
@@ -535,11 +554,12 @@ class Person
      */
     public function setCity(?string $city) : self
     {
+        $this->initialized['city'] = true;
         $this->city = $city;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -548,7 +568,7 @@ class Person
         return $this->country;
     }
     /**
-     *
+     * 
      *
      * @param string|null $country
      *
@@ -556,11 +576,12 @@ class Person
      */
     public function setCountry(?string $country) : self
     {
+        $this->initialized['country'] = true;
         $this->country = $country;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return float|null
      */
@@ -569,7 +590,7 @@ class Person
         return $this->latitude;
     }
     /**
-     *
+     * 
      *
      * @param float|null $latitude
      *
@@ -577,11 +598,12 @@ class Person
      */
     public function setLatitude(?float $latitude) : self
     {
+        $this->initialized['latitude'] = true;
         $this->latitude = $latitude;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return float|null
      */
@@ -590,7 +612,7 @@ class Person
         return $this->longitude;
     }
     /**
-     *
+     * 
      *
      * @param float|null $longitude
      *
@@ -598,11 +620,12 @@ class Person
      */
     public function setLongitude(?float $longitude) : self
     {
+        $this->initialized['longitude'] = true;
         $this->longitude = $longitude;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return float|null
      */
@@ -611,7 +634,7 @@ class Person
         return $this->latitudeLoose;
     }
     /**
-     *
+     * 
      *
      * @param float|null $latitudeLoose
      *
@@ -619,11 +642,12 @@ class Person
      */
     public function setLatitudeLoose(?float $latitudeLoose) : self
     {
+        $this->initialized['latitudeLoose'] = true;
         $this->latitudeLoose = $latitudeLoose;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return float|null
      */
@@ -632,7 +656,7 @@ class Person
         return $this->longitudeLoose;
     }
     /**
-     *
+     * 
      *
      * @param float|null $longitudeLoose
      *
@@ -640,11 +664,12 @@ class Person
      */
     public function setLongitudeLoose(?float $longitudeLoose) : self
     {
+        $this->initialized['longitudeLoose'] = true;
         $this->longitudeLoose = $longitudeLoose;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -653,7 +678,7 @@ class Person
         return $this->phonePrivate;
     }
     /**
-     *
+     * 
      *
      * @param string|null $phonePrivate
      *
@@ -661,11 +686,12 @@ class Person
      */
     public function setPhonePrivate(?string $phonePrivate) : self
     {
+        $this->initialized['phonePrivate'] = true;
         $this->phonePrivate = $phonePrivate;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -674,7 +700,7 @@ class Person
         return $this->phoneWork;
     }
     /**
-     *
+     * 
      *
      * @param string|null $phoneWork
      *
@@ -682,11 +708,12 @@ class Person
      */
     public function setPhoneWork(?string $phoneWork) : self
     {
+        $this->initialized['phoneWork'] = true;
         $this->phoneWork = $phoneWork;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -695,7 +722,7 @@ class Person
         return $this->mobile;
     }
     /**
-     *
+     * 
      *
      * @param string|null $mobile
      *
@@ -703,11 +730,12 @@ class Person
      */
     public function setMobile(?string $mobile) : self
     {
+        $this->initialized['mobile'] = true;
         $this->mobile = $mobile;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -716,7 +744,7 @@ class Person
         return $this->fax;
     }
     /**
-     *
+     * 
      *
      * @param string|null $fax
      *
@@ -724,11 +752,12 @@ class Person
      */
     public function setFax(?string $fax) : self
     {
+        $this->initialized['fax'] = true;
         $this->fax = $fax;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -737,7 +766,7 @@ class Person
         return $this->birthName;
     }
     /**
-     *
+     * 
      *
      * @param string|null $birthName
      *
@@ -745,32 +774,34 @@ class Person
      */
     public function setBirthName(?string $birthName) : self
     {
+        $this->initialized['birthName'] = true;
         $this->birthName = $birthName;
         return $this;
     }
     /**
+     * 
      *
-     *
-     * @return string|null
+     * @return \DateTime|null
      */
-    public function getBirthday() : ?string
+    public function getBirthday() : ?\DateTime
     {
         return $this->birthday;
     }
     /**
+     * 
      *
-     *
-     * @param string|null $birthday
+     * @param \DateTime|null $birthday
      *
      * @return self
      */
-    public function setBirthday(?string $birthday) : self
+    public function setBirthday(?\DateTime $birthday) : self
     {
+        $this->initialized['birthday'] = true;
         $this->birthday = $birthday;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -779,7 +810,7 @@ class Person
         return $this->birthplace;
     }
     /**
-     *
+     * 
      *
      * @param string|null $birthplace
      *
@@ -787,11 +818,12 @@ class Person
      */
     public function setBirthplace(?string $birthplace) : self
     {
+        $this->initialized['birthplace'] = true;
         $this->birthplace = $birthplace;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -800,7 +832,7 @@ class Person
         return $this->imageUrl;
     }
     /**
-     *
+     * 
      *
      * @param string|null $imageUrl
      *
@@ -808,11 +840,12 @@ class Person
      */
     public function setImageUrl(?string $imageUrl) : self
     {
+        $this->initialized['imageUrl'] = true;
         $this->imageUrl = $imageUrl;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -821,7 +854,7 @@ class Person
         return $this->familyImageUrl;
     }
     /**
-     *
+     * 
      *
      * @param string|null $familyImageUrl
      *
@@ -829,11 +862,12 @@ class Person
      */
     public function setFamilyImageUrl(?string $familyImageUrl) : self
     {
+        $this->initialized['familyImageUrl'] = true;
         $this->familyImageUrl = $familyImageUrl;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int|null
      */
@@ -842,7 +876,7 @@ class Person
         return $this->sexId;
     }
     /**
-     *
+     * 
      *
      * @param int|null $sexId
      *
@@ -850,11 +884,12 @@ class Person
      */
     public function setSexId(?int $sexId) : self
     {
+        $this->initialized['sexId'] = true;
         $this->sexId = $sexId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -863,7 +898,7 @@ class Person
         return $this->email;
     }
     /**
-     *
+     * 
      *
      * @param string|null $email
      *
@@ -871,11 +906,12 @@ class Person
      */
     public function setEmail(?string $email) : self
     {
+        $this->initialized['email'] = true;
         $this->email = $email;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -884,7 +920,7 @@ class Person
         return $this->cmsUserId;
     }
     /**
-     *
+     * 
      *
      * @param string|null $cmsUserId
      *
@@ -892,11 +928,12 @@ class Person
      */
     public function setCmsUserId(?string $cmsUserId) : self
     {
+        $this->initialized['cmsUserId'] = true;
         $this->cmsUserId = $cmsUserId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int|null
      */
@@ -905,7 +942,7 @@ class Person
         return $this->optigemId;
     }
     /**
-     *
+     * 
      *
      * @param int|null $optigemId
      *
@@ -913,11 +950,12 @@ class Person
      */
     public function setOptigemId(?int $optigemId) : self
     {
+        $this->initialized['optigemId'] = true;
         $this->optigemId = $optigemId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return PersonPrivacyPolicyAgreement
      */
@@ -926,7 +964,7 @@ class Person
         return $this->privacyPolicyAgreement;
     }
     /**
-     *
+     * 
      *
      * @param PersonPrivacyPolicyAgreement $privacyPolicyAgreement
      *
@@ -934,11 +972,12 @@ class Person
      */
     public function setPrivacyPolicyAgreement(PersonPrivacyPolicyAgreement $privacyPolicyAgreement) : self
     {
+        $this->initialized['privacyPolicyAgreement'] = true;
         $this->privacyPolicyAgreement = $privacyPolicyAgreement;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int|null
      */
@@ -947,7 +986,7 @@ class Person
         return $this->nationalityId;
     }
     /**
-     *
+     * 
      *
      * @param int|null $nationalityId
      *
@@ -955,11 +994,12 @@ class Person
      */
     public function setNationalityId(?int $nationalityId) : self
     {
+        $this->initialized['nationalityId'] = true;
         $this->nationalityId = $nationalityId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int|null
      */
@@ -968,7 +1008,7 @@ class Person
         return $this->familyStatusId;
     }
     /**
-     *
+     * 
      *
      * @param int|null $familyStatusId
      *
@@ -976,32 +1016,34 @@ class Person
      */
     public function setFamilyStatusId(?int $familyStatusId) : self
     {
+        $this->initialized['familyStatusId'] = true;
         $this->familyStatusId = $familyStatusId;
         return $this;
     }
     /**
+     * 
      *
-     *
-     * @return string|null
+     * @return \DateTime|null
      */
-    public function getWeddingDate() : ?string
+    public function getWeddingDate() : ?\DateTime
     {
         return $this->weddingDate;
     }
     /**
+     * 
      *
-     *
-     * @param string|null $weddingDate
+     * @param \DateTime|null $weddingDate
      *
      * @return self
      */
-    public function setWeddingDate(?string $weddingDate) : self
+    public function setWeddingDate(?\DateTime $weddingDate) : self
     {
+        $this->initialized['weddingDate'] = true;
         $this->weddingDate = $weddingDate;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -1010,7 +1052,7 @@ class Person
         return $this->campusId;
     }
     /**
-     *
+     * 
      *
      * @param int $campusId
      *
@@ -1018,11 +1060,12 @@ class Person
      */
     public function setCampusId(int $campusId) : self
     {
+        $this->initialized['campusId'] = true;
         $this->campusId = $campusId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -1031,7 +1074,7 @@ class Person
         return $this->statusId;
     }
     /**
-     *
+     * 
      *
      * @param int $statusId
      *
@@ -1039,11 +1082,12 @@ class Person
      */
     public function setStatusId(int $statusId) : self
     {
+        $this->initialized['statusId'] = true;
         $this->statusId = $statusId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return \DateTime|null
      */
@@ -1052,7 +1096,7 @@ class Person
         return $this->firstContact;
     }
     /**
-     *
+     * 
      *
      * @param \DateTime|null $firstContact
      *
@@ -1060,32 +1104,34 @@ class Person
      */
     public function setFirstContact(?\DateTime $firstContact) : self
     {
+        $this->initialized['firstContact'] = true;
         $this->firstContact = $firstContact;
         return $this;
     }
     /**
+     * 
      *
-     *
-     * @return string|null
+     * @return \DateTime|null
      */
-    public function getDateOfBelonging() : ?string
+    public function getDateOfBelonging() : ?\DateTime
     {
         return $this->dateOfBelonging;
     }
     /**
+     * 
      *
-     *
-     * @param string|null $dateOfBelonging
+     * @param \DateTime|null $dateOfBelonging
      *
      * @return self
      */
-    public function setDateOfBelonging(?string $dateOfBelonging) : self
+    public function setDateOfBelonging(?\DateTime $dateOfBelonging) : self
     {
+        $this->initialized['dateOfBelonging'] = true;
         $this->dateOfBelonging = $dateOfBelonging;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return \DateTime|null
      */
@@ -1094,7 +1140,7 @@ class Person
         return $this->dateOfEntry;
     }
     /**
-     *
+     * 
      *
      * @param \DateTime|null $dateOfEntry
      *
@@ -1102,11 +1148,12 @@ class Person
      */
     public function setDateOfEntry(?\DateTime $dateOfEntry) : self
     {
+        $this->initialized['dateOfEntry'] = true;
         $this->dateOfEntry = $dateOfEntry;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return \DateTime|null
      */
@@ -1115,7 +1162,7 @@ class Person
         return $this->dateOfResign;
     }
     /**
-     *
+     * 
      *
      * @param \DateTime|null $dateOfResign
      *
@@ -1123,32 +1170,34 @@ class Person
      */
     public function setDateOfResign(?\DateTime $dateOfResign) : self
     {
+        $this->initialized['dateOfResign'] = true;
         $this->dateOfResign = $dateOfResign;
         return $this;
     }
     /**
+     * 
      *
-     *
-     * @return string|null
+     * @return \DateTime|null
      */
-    public function getDateOfBaptism() : ?string
+    public function getDateOfBaptism() : ?\DateTime
     {
         return $this->dateOfBaptism;
     }
     /**
+     * 
      *
-     *
-     * @param string|null $dateOfBaptism
+     * @param \DateTime|null $dateOfBaptism
      *
      * @return self
      */
-    public function setDateOfBaptism(?string $dateOfBaptism) : self
+    public function setDateOfBaptism(?\DateTime $dateOfBaptism) : self
     {
+        $this->initialized['dateOfBaptism'] = true;
         $this->dateOfBaptism = $dateOfBaptism;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -1157,7 +1206,7 @@ class Person
         return $this->placeOfBaptism;
     }
     /**
-     *
+     * 
      *
      * @param string|null $placeOfBaptism
      *
@@ -1165,11 +1214,12 @@ class Person
      */
     public function setPlaceOfBaptism(?string $placeOfBaptism) : self
     {
+        $this->initialized['placeOfBaptism'] = true;
         $this->placeOfBaptism = $placeOfBaptism;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -1178,7 +1228,7 @@ class Person
         return $this->baptisedBy;
     }
     /**
-     *
+     * 
      *
      * @param string|null $baptisedBy
      *
@@ -1186,11 +1236,12 @@ class Person
      */
     public function setBaptisedBy(?string $baptisedBy) : self
     {
+        $this->initialized['baptisedBy'] = true;
         $this->baptisedBy = $baptisedBy;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -1199,7 +1250,7 @@ class Person
         return $this->referredBy;
     }
     /**
-     *
+     * 
      *
      * @param string|null $referredBy
      *
@@ -1207,11 +1258,12 @@ class Person
      */
     public function setReferredBy(?string $referredBy) : self
     {
+        $this->initialized['referredBy'] = true;
         $this->referredBy = $referredBy;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -1220,7 +1272,7 @@ class Person
         return $this->referredTo;
     }
     /**
-     *
+     * 
      *
      * @param string|null $referredTo
      *
@@ -1228,11 +1280,12 @@ class Person
      */
     public function setReferredTo(?string $referredTo) : self
     {
+        $this->initialized['referredTo'] = true;
         $this->referredTo = $referredTo;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int|null
      */
@@ -1241,7 +1294,7 @@ class Person
         return $this->growPathId;
     }
     /**
-     *
+     * 
      *
      * @param int|null $growPathId
      *
@@ -1249,11 +1302,12 @@ class Person
      */
     public function setGrowPathId(?int $growPathId) : self
     {
+        $this->initialized['growPathId'] = true;
         $this->growPathId = $growPathId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -1262,7 +1316,7 @@ class Person
         return $this->isArchived;
     }
     /**
-     *
+     * 
      *
      * @param bool $isArchived
      *
@@ -1270,6 +1324,7 @@ class Person
      */
     public function setIsArchived(bool $isArchived) : self
     {
+        $this->initialized['isArchived'] = true;
         $this->isArchived = $isArchived;
         return $this;
     }

@@ -2,7 +2,7 @@
 
 namespace ChurchTools\Api2\Endpoint;
 
-class DeletePersonSetting extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jane\OpenApiRuntime\Client\Psr7Endpoint
+class DeletePersonSetting extends \ChurchTools\Api2\Runtime\Client\BaseEndpoint implements \ChurchTools\Api2\Runtime\Client\Endpoint
 {
     protected $id;
     protected $module;
@@ -20,7 +20,7 @@ class DeletePersonSetting extends \Jane\OpenApiRuntime\Client\BaseEndpoint imple
         $this->module = $module;
         $this->attribute = $attribute;
     }
-    use \Jane\OpenApiRuntime\Client\Psr7EndpointTrait;
+    use \ChurchTools\Api2\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'DELETE';
@@ -33,6 +33,10 @@ class DeletePersonSetting extends \Jane\OpenApiRuntime\Client\BaseEndpoint imple
     {
         return array(array(), null);
     }
+    public function getExtraHeaders() : array
+    {
+        return array('Accept' => array('text/plain'));
+    }
     /**
      * {@inheritdoc}
      *
@@ -40,15 +44,21 @@ class DeletePersonSetting extends \Jane\OpenApiRuntime\Client\BaseEndpoint imple
      *
      * @return null
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if (204 === $status) {
             return null;
         }
         if (401 === $status) {
         }
         if (403 === $status) {
-            throw new \ChurchTools\Api2\Exception\DeletePersonSettingForbiddenException();
+            throw new \ChurchTools\Api2\Exception\DeletePersonSettingForbiddenException($response);
         }
+    }
+    public function getAuthenticationScopes() : array
+    {
+        return array('login_token');
     }
 }

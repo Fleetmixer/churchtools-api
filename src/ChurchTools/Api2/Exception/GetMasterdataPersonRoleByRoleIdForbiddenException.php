@@ -2,10 +2,19 @@
 
 namespace ChurchTools\Api2\Exception;
 
-class GetMasterdataPersonRoleByRoleIdForbiddenException extends \RuntimeException implements ClientException
+class GetMasterdataPersonRoleByRoleIdForbiddenException extends ForbiddenException
 {
-    public function __construct()
+    /**
+     * @var \Psr\Http\Message\ResponseInterface
+     */
+    private $response;
+    public function __construct(\Psr\Http\Message\ResponseInterface $response = null)
     {
-        parent::__construct('Forbidden to see group type role', 403);
+        parent::__construct('Forbidden to see group type role');
+        $this->response = $response;
+    }
+    public function getResponse() : ?\Psr\Http\Message\ResponseInterface
+    {
+        return $this->response;
     }
 }

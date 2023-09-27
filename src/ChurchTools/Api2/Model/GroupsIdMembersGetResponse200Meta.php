@@ -2,22 +2,30 @@
 
 namespace ChurchTools\Api2\Model;
 
-class GroupsIdMembersGetResponse200Meta
+class GroupsIdMembersGetResponse200Meta extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var int
      */
     protected $count;
     /**
-     *
+     * 
      *
      * @var object
      */
     protected $pagination;
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -26,7 +34,7 @@ class GroupsIdMembersGetResponse200Meta
         return $this->count;
     }
     /**
-     *
+     * 
      *
      * @param int $count
      *
@@ -34,11 +42,12 @@ class GroupsIdMembersGetResponse200Meta
      */
     public function setCount(int $count) : self
     {
+        $this->initialized['count'] = true;
         $this->count = $count;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return object
      */
@@ -47,7 +56,7 @@ class GroupsIdMembersGetResponse200Meta
         return $this->pagination;
     }
     /**
-     *
+     * 
      *
      * @param object $pagination
      *
@@ -55,6 +64,7 @@ class GroupsIdMembersGetResponse200Meta
      */
     public function setPagination($pagination) : self
     {
+        $this->initialized['pagination'] = true;
         $this->pagination = $pagination;
         return $this;
     }

@@ -2,130 +2,138 @@
 
 namespace ChurchTools\Api2\Model;
 
-class PersonsPostBody
+class PersonsPostBody extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var string|null
      */
     protected $title;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $firstName;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $lastName;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $nickname;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $job;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $street;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $addressAddition;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $zip;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $city;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $country;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $phonePrivate;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $phoneWork;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $mobile;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $fax;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $birthName;
     /**
+     * 
      *
-     *
-     * @var string|null
+     * @var \DateTime|null
      */
     protected $birthday;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $birthplace;
     /**
-     *
+     * 
      *
      * @var int|null
      */
     protected $sexId;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $email;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $cmsUserId;
     /**
-     *
+     * 
      *
      * @var int|null
      */
@@ -137,97 +145,97 @@ class PersonsPostBody
      */
     protected $privacyPolicyAgreement;
     /**
-     *
+     * 
      *
      * @var int|null
      */
     protected $nationalityId;
     /**
-     *
+     * 
      *
      * @var int|null
      */
     protected $familyStatusId;
     /**
+     * 
      *
-     *
-     * @var string|null
+     * @var \DateTime|null
      */
     protected $weddingDate;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $campusId;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $statusId;
     /**
-     *
+     * 
      *
      * @var \DateTime|null
      */
     protected $firstContact;
     /**
+     * 
      *
-     *
-     * @var string|null
+     * @var \DateTime|null
      */
     protected $dateOfBelonging;
     /**
-     *
+     * 
      *
      * @var \DateTime|null
      */
     protected $dateOfEntry;
     /**
-     *
+     * 
      *
      * @var \DateTime|null
      */
     protected $dateOfResign;
     /**
+     * 
      *
-     *
-     * @var string|null
+     * @var \DateTime|null
      */
     protected $dateOfBaptism;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $placeOfBaptism;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $baptisedBy;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $referredBy;
     /**
-     *
+     * 
      *
      * @var string|null
      */
     protected $referredTo;
     /**
-     *
+     * 
      *
      * @var int|null
      */
     protected $growPathId;
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -236,7 +244,7 @@ class PersonsPostBody
         return $this->title;
     }
     /**
-     *
+     * 
      *
      * @param string|null $title
      *
@@ -244,11 +252,12 @@ class PersonsPostBody
      */
     public function setTitle(?string $title) : self
     {
+        $this->initialized['title'] = true;
         $this->title = $title;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -257,7 +266,7 @@ class PersonsPostBody
         return $this->firstName;
     }
     /**
-     *
+     * 
      *
      * @param string|null $firstName
      *
@@ -265,11 +274,12 @@ class PersonsPostBody
      */
     public function setFirstName(?string $firstName) : self
     {
+        $this->initialized['firstName'] = true;
         $this->firstName = $firstName;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -278,7 +288,7 @@ class PersonsPostBody
         return $this->lastName;
     }
     /**
-     *
+     * 
      *
      * @param string|null $lastName
      *
@@ -286,11 +296,12 @@ class PersonsPostBody
      */
     public function setLastName(?string $lastName) : self
     {
+        $this->initialized['lastName'] = true;
         $this->lastName = $lastName;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -299,7 +310,7 @@ class PersonsPostBody
         return $this->nickname;
     }
     /**
-     *
+     * 
      *
      * @param string|null $nickname
      *
@@ -307,11 +318,12 @@ class PersonsPostBody
      */
     public function setNickname(?string $nickname) : self
     {
+        $this->initialized['nickname'] = true;
         $this->nickname = $nickname;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -320,7 +332,7 @@ class PersonsPostBody
         return $this->job;
     }
     /**
-     *
+     * 
      *
      * @param string|null $job
      *
@@ -328,11 +340,12 @@ class PersonsPostBody
      */
     public function setJob(?string $job) : self
     {
+        $this->initialized['job'] = true;
         $this->job = $job;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -341,7 +354,7 @@ class PersonsPostBody
         return $this->street;
     }
     /**
-     *
+     * 
      *
      * @param string|null $street
      *
@@ -349,11 +362,12 @@ class PersonsPostBody
      */
     public function setStreet(?string $street) : self
     {
+        $this->initialized['street'] = true;
         $this->street = $street;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -362,7 +376,7 @@ class PersonsPostBody
         return $this->addressAddition;
     }
     /**
-     *
+     * 
      *
      * @param string|null $addressAddition
      *
@@ -370,11 +384,12 @@ class PersonsPostBody
      */
     public function setAddressAddition(?string $addressAddition) : self
     {
+        $this->initialized['addressAddition'] = true;
         $this->addressAddition = $addressAddition;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -383,7 +398,7 @@ class PersonsPostBody
         return $this->zip;
     }
     /**
-     *
+     * 
      *
      * @param string|null $zip
      *
@@ -391,11 +406,12 @@ class PersonsPostBody
      */
     public function setZip(?string $zip) : self
     {
+        $this->initialized['zip'] = true;
         $this->zip = $zip;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -404,7 +420,7 @@ class PersonsPostBody
         return $this->city;
     }
     /**
-     *
+     * 
      *
      * @param string|null $city
      *
@@ -412,11 +428,12 @@ class PersonsPostBody
      */
     public function setCity(?string $city) : self
     {
+        $this->initialized['city'] = true;
         $this->city = $city;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -425,7 +442,7 @@ class PersonsPostBody
         return $this->country;
     }
     /**
-     *
+     * 
      *
      * @param string|null $country
      *
@@ -433,11 +450,12 @@ class PersonsPostBody
      */
     public function setCountry(?string $country) : self
     {
+        $this->initialized['country'] = true;
         $this->country = $country;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -446,7 +464,7 @@ class PersonsPostBody
         return $this->phonePrivate;
     }
     /**
-     *
+     * 
      *
      * @param string|null $phonePrivate
      *
@@ -454,11 +472,12 @@ class PersonsPostBody
      */
     public function setPhonePrivate(?string $phonePrivate) : self
     {
+        $this->initialized['phonePrivate'] = true;
         $this->phonePrivate = $phonePrivate;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -467,7 +486,7 @@ class PersonsPostBody
         return $this->phoneWork;
     }
     /**
-     *
+     * 
      *
      * @param string|null $phoneWork
      *
@@ -475,11 +494,12 @@ class PersonsPostBody
      */
     public function setPhoneWork(?string $phoneWork) : self
     {
+        $this->initialized['phoneWork'] = true;
         $this->phoneWork = $phoneWork;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -488,7 +508,7 @@ class PersonsPostBody
         return $this->mobile;
     }
     /**
-     *
+     * 
      *
      * @param string|null $mobile
      *
@@ -496,11 +516,12 @@ class PersonsPostBody
      */
     public function setMobile(?string $mobile) : self
     {
+        $this->initialized['mobile'] = true;
         $this->mobile = $mobile;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -509,7 +530,7 @@ class PersonsPostBody
         return $this->fax;
     }
     /**
-     *
+     * 
      *
      * @param string|null $fax
      *
@@ -517,11 +538,12 @@ class PersonsPostBody
      */
     public function setFax(?string $fax) : self
     {
+        $this->initialized['fax'] = true;
         $this->fax = $fax;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -530,7 +552,7 @@ class PersonsPostBody
         return $this->birthName;
     }
     /**
-     *
+     * 
      *
      * @param string|null $birthName
      *
@@ -538,32 +560,34 @@ class PersonsPostBody
      */
     public function setBirthName(?string $birthName) : self
     {
+        $this->initialized['birthName'] = true;
         $this->birthName = $birthName;
         return $this;
     }
     /**
+     * 
      *
-     *
-     * @return string|null
+     * @return \DateTime|null
      */
-    public function getBirthday() : ?string
+    public function getBirthday() : ?\DateTime
     {
         return $this->birthday;
     }
     /**
+     * 
      *
-     *
-     * @param string|null $birthday
+     * @param \DateTime|null $birthday
      *
      * @return self
      */
-    public function setBirthday(?string $birthday) : self
+    public function setBirthday(?\DateTime $birthday) : self
     {
+        $this->initialized['birthday'] = true;
         $this->birthday = $birthday;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -572,7 +596,7 @@ class PersonsPostBody
         return $this->birthplace;
     }
     /**
-     *
+     * 
      *
      * @param string|null $birthplace
      *
@@ -580,11 +604,12 @@ class PersonsPostBody
      */
     public function setBirthplace(?string $birthplace) : self
     {
+        $this->initialized['birthplace'] = true;
         $this->birthplace = $birthplace;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int|null
      */
@@ -593,7 +618,7 @@ class PersonsPostBody
         return $this->sexId;
     }
     /**
-     *
+     * 
      *
      * @param int|null $sexId
      *
@@ -601,11 +626,12 @@ class PersonsPostBody
      */
     public function setSexId(?int $sexId) : self
     {
+        $this->initialized['sexId'] = true;
         $this->sexId = $sexId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -614,7 +640,7 @@ class PersonsPostBody
         return $this->email;
     }
     /**
-     *
+     * 
      *
      * @param string|null $email
      *
@@ -622,11 +648,12 @@ class PersonsPostBody
      */
     public function setEmail(?string $email) : self
     {
+        $this->initialized['email'] = true;
         $this->email = $email;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -635,7 +662,7 @@ class PersonsPostBody
         return $this->cmsUserId;
     }
     /**
-     *
+     * 
      *
      * @param string|null $cmsUserId
      *
@@ -643,11 +670,12 @@ class PersonsPostBody
      */
     public function setCmsUserId(?string $cmsUserId) : self
     {
+        $this->initialized['cmsUserId'] = true;
         $this->cmsUserId = $cmsUserId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int|null
      */
@@ -656,7 +684,7 @@ class PersonsPostBody
         return $this->optigemId;
     }
     /**
-     *
+     * 
      *
      * @param int|null $optigemId
      *
@@ -664,6 +692,7 @@ class PersonsPostBody
      */
     public function setOptigemId(?int $optigemId) : self
     {
+        $this->initialized['optigemId'] = true;
         $this->optigemId = $optigemId;
         return $this;
     }
@@ -685,11 +714,12 @@ class PersonsPostBody
      */
     public function setPrivacyPolicyAgreement(PersonsPostBodyPrivacyPolicyAgreement $privacyPolicyAgreement) : self
     {
+        $this->initialized['privacyPolicyAgreement'] = true;
         $this->privacyPolicyAgreement = $privacyPolicyAgreement;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int|null
      */
@@ -698,7 +728,7 @@ class PersonsPostBody
         return $this->nationalityId;
     }
     /**
-     *
+     * 
      *
      * @param int|null $nationalityId
      *
@@ -706,11 +736,12 @@ class PersonsPostBody
      */
     public function setNationalityId(?int $nationalityId) : self
     {
+        $this->initialized['nationalityId'] = true;
         $this->nationalityId = $nationalityId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int|null
      */
@@ -719,7 +750,7 @@ class PersonsPostBody
         return $this->familyStatusId;
     }
     /**
-     *
+     * 
      *
      * @param int|null $familyStatusId
      *
@@ -727,32 +758,34 @@ class PersonsPostBody
      */
     public function setFamilyStatusId(?int $familyStatusId) : self
     {
+        $this->initialized['familyStatusId'] = true;
         $this->familyStatusId = $familyStatusId;
         return $this;
     }
     /**
+     * 
      *
-     *
-     * @return string|null
+     * @return \DateTime|null
      */
-    public function getWeddingDate() : ?string
+    public function getWeddingDate() : ?\DateTime
     {
         return $this->weddingDate;
     }
     /**
+     * 
      *
-     *
-     * @param string|null $weddingDate
+     * @param \DateTime|null $weddingDate
      *
      * @return self
      */
-    public function setWeddingDate(?string $weddingDate) : self
+    public function setWeddingDate(?\DateTime $weddingDate) : self
     {
+        $this->initialized['weddingDate'] = true;
         $this->weddingDate = $weddingDate;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -761,7 +794,7 @@ class PersonsPostBody
         return $this->campusId;
     }
     /**
-     *
+     * 
      *
      * @param int $campusId
      *
@@ -769,11 +802,12 @@ class PersonsPostBody
      */
     public function setCampusId(int $campusId) : self
     {
+        $this->initialized['campusId'] = true;
         $this->campusId = $campusId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -782,7 +816,7 @@ class PersonsPostBody
         return $this->statusId;
     }
     /**
-     *
+     * 
      *
      * @param int $statusId
      *
@@ -790,11 +824,12 @@ class PersonsPostBody
      */
     public function setStatusId(int $statusId) : self
     {
+        $this->initialized['statusId'] = true;
         $this->statusId = $statusId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return \DateTime|null
      */
@@ -803,7 +838,7 @@ class PersonsPostBody
         return $this->firstContact;
     }
     /**
-     *
+     * 
      *
      * @param \DateTime|null $firstContact
      *
@@ -811,32 +846,34 @@ class PersonsPostBody
      */
     public function setFirstContact(?\DateTime $firstContact) : self
     {
+        $this->initialized['firstContact'] = true;
         $this->firstContact = $firstContact;
         return $this;
     }
     /**
+     * 
      *
-     *
-     * @return string|null
+     * @return \DateTime|null
      */
-    public function getDateOfBelonging() : ?string
+    public function getDateOfBelonging() : ?\DateTime
     {
         return $this->dateOfBelonging;
     }
     /**
+     * 
      *
-     *
-     * @param string|null $dateOfBelonging
+     * @param \DateTime|null $dateOfBelonging
      *
      * @return self
      */
-    public function setDateOfBelonging(?string $dateOfBelonging) : self
+    public function setDateOfBelonging(?\DateTime $dateOfBelonging) : self
     {
+        $this->initialized['dateOfBelonging'] = true;
         $this->dateOfBelonging = $dateOfBelonging;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return \DateTime|null
      */
@@ -845,7 +882,7 @@ class PersonsPostBody
         return $this->dateOfEntry;
     }
     /**
-     *
+     * 
      *
      * @param \DateTime|null $dateOfEntry
      *
@@ -853,11 +890,12 @@ class PersonsPostBody
      */
     public function setDateOfEntry(?\DateTime $dateOfEntry) : self
     {
+        $this->initialized['dateOfEntry'] = true;
         $this->dateOfEntry = $dateOfEntry;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return \DateTime|null
      */
@@ -866,7 +904,7 @@ class PersonsPostBody
         return $this->dateOfResign;
     }
     /**
-     *
+     * 
      *
      * @param \DateTime|null $dateOfResign
      *
@@ -874,32 +912,34 @@ class PersonsPostBody
      */
     public function setDateOfResign(?\DateTime $dateOfResign) : self
     {
+        $this->initialized['dateOfResign'] = true;
         $this->dateOfResign = $dateOfResign;
         return $this;
     }
     /**
+     * 
      *
-     *
-     * @return string|null
+     * @return \DateTime|null
      */
-    public function getDateOfBaptism() : ?string
+    public function getDateOfBaptism() : ?\DateTime
     {
         return $this->dateOfBaptism;
     }
     /**
+     * 
      *
-     *
-     * @param string|null $dateOfBaptism
+     * @param \DateTime|null $dateOfBaptism
      *
      * @return self
      */
-    public function setDateOfBaptism(?string $dateOfBaptism) : self
+    public function setDateOfBaptism(?\DateTime $dateOfBaptism) : self
     {
+        $this->initialized['dateOfBaptism'] = true;
         $this->dateOfBaptism = $dateOfBaptism;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -908,7 +948,7 @@ class PersonsPostBody
         return $this->placeOfBaptism;
     }
     /**
-     *
+     * 
      *
      * @param string|null $placeOfBaptism
      *
@@ -916,11 +956,12 @@ class PersonsPostBody
      */
     public function setPlaceOfBaptism(?string $placeOfBaptism) : self
     {
+        $this->initialized['placeOfBaptism'] = true;
         $this->placeOfBaptism = $placeOfBaptism;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -929,7 +970,7 @@ class PersonsPostBody
         return $this->baptisedBy;
     }
     /**
-     *
+     * 
      *
      * @param string|null $baptisedBy
      *
@@ -937,11 +978,12 @@ class PersonsPostBody
      */
     public function setBaptisedBy(?string $baptisedBy) : self
     {
+        $this->initialized['baptisedBy'] = true;
         $this->baptisedBy = $baptisedBy;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -950,7 +992,7 @@ class PersonsPostBody
         return $this->referredBy;
     }
     /**
-     *
+     * 
      *
      * @param string|null $referredBy
      *
@@ -958,11 +1000,12 @@ class PersonsPostBody
      */
     public function setReferredBy(?string $referredBy) : self
     {
+        $this->initialized['referredBy'] = true;
         $this->referredBy = $referredBy;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string|null
      */
@@ -971,7 +1014,7 @@ class PersonsPostBody
         return $this->referredTo;
     }
     /**
-     *
+     * 
      *
      * @param string|null $referredTo
      *
@@ -979,11 +1022,12 @@ class PersonsPostBody
      */
     public function setReferredTo(?string $referredTo) : self
     {
+        $this->initialized['referredTo'] = true;
         $this->referredTo = $referredTo;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int|null
      */
@@ -992,7 +1036,7 @@ class PersonsPostBody
         return $this->growPathId;
     }
     /**
-     *
+     * 
      *
      * @param int|null $growPathId
      *
@@ -1000,6 +1044,7 @@ class PersonsPostBody
      */
     public function setGrowPathId(?int $growPathId) : self
     {
+        $this->initialized['growPathId'] = true;
         $this->growPathId = $growPathId;
         return $this;
     }

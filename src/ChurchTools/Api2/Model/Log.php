@@ -2,10 +2,18 @@
 
 namespace ChurchTools\Api2\Model;
 
-class Log
+class Log extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var int
      */
@@ -47,13 +55,13 @@ class Log
      */
     protected $domainId;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $message;
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -62,7 +70,7 @@ class Log
         return $this->id;
     }
     /**
-     *
+     * 
      *
      * @param int $id
      *
@@ -70,6 +78,7 @@ class Log
      */
     public function setId(int $id) : self
     {
+        $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
@@ -91,6 +100,7 @@ class Log
      */
     public function setLevel(int $level) : self
     {
+        $this->initialized['level'] = true;
         $this->level = $level;
         return $this;
     }
@@ -112,6 +122,7 @@ class Log
      */
     public function setDate(\DateTime $date) : self
     {
+        $this->initialized['date'] = true;
         $this->date = $date;
         return $this;
     }
@@ -133,6 +144,7 @@ class Log
      */
     public function setPersonId(int $personId) : self
     {
+        $this->initialized['personId'] = true;
         $this->personId = $personId;
         return $this;
     }
@@ -154,6 +166,7 @@ class Log
      */
     public function setSimultePersonId(?int $simultePersonId) : self
     {
+        $this->initialized['simultePersonId'] = true;
         $this->simultePersonId = $simultePersonId;
         return $this;
     }
@@ -175,6 +188,7 @@ class Log
      */
     public function setDomainType(string $domainType) : self
     {
+        $this->initialized['domainType'] = true;
         $this->domainType = $domainType;
         return $this;
     }
@@ -196,11 +210,12 @@ class Log
      */
     public function setDomainId(int $domainId) : self
     {
+        $this->initialized['domainId'] = true;
         $this->domainId = $domainId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -209,7 +224,7 @@ class Log
         return $this->message;
     }
     /**
-     *
+     * 
      *
      * @param string $message
      *
@@ -217,6 +232,7 @@ class Log
      */
     public function setMessage(string $message) : self
     {
+        $this->initialized['message'] = true;
         $this->message = $message;
         return $this;
     }

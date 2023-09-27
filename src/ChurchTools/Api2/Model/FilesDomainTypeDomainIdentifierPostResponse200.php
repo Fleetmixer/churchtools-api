@@ -2,22 +2,30 @@
 
 namespace ChurchTools\Api2\Model;
 
-class FilesDomainTypeDomainIdentifierPostResponse200
+class FilesDomainTypeDomainIdentifierPostResponse200 extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var File[]
      */
     protected $data;
     /**
-     *
+     * 
      *
      * @var FilesDomainTypeDomainIdentifierPostResponse200Meta
      */
     protected $meta;
     /**
-     *
+     * 
      *
      * @return File[]
      */
@@ -26,7 +34,7 @@ class FilesDomainTypeDomainIdentifierPostResponse200
         return $this->data;
     }
     /**
-     *
+     * 
      *
      * @param File[] $data
      *
@@ -34,11 +42,12 @@ class FilesDomainTypeDomainIdentifierPostResponse200
      */
     public function setData(array $data) : self
     {
+        $this->initialized['data'] = true;
         $this->data = $data;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return FilesDomainTypeDomainIdentifierPostResponse200Meta
      */
@@ -47,7 +56,7 @@ class FilesDomainTypeDomainIdentifierPostResponse200
         return $this->meta;
     }
     /**
-     *
+     * 
      *
      * @param FilesDomainTypeDomainIdentifierPostResponse200Meta $meta
      *
@@ -55,6 +64,7 @@ class FilesDomainTypeDomainIdentifierPostResponse200
      */
     public function setMeta(FilesDomainTypeDomainIdentifierPostResponse200Meta $meta) : self
     {
+        $this->initialized['meta'] = true;
         $this->meta = $meta;
         return $this;
     }

@@ -2,8 +2,16 @@
 
 namespace ChurchTools\Api2\Model;
 
-class Department
+class Department extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * ID of department
      *
@@ -46,6 +54,7 @@ class Department
      */
     public function setId(int $id) : self
     {
+        $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
@@ -67,6 +76,7 @@ class Department
      */
     public function setName(string $name) : self
     {
+        $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
     }
@@ -88,6 +98,7 @@ class Department
      */
     public function setShorty(string $shorty) : self
     {
+        $this->initialized['shorty'] = true;
         $this->shorty = $shorty;
         return $this;
     }
@@ -109,6 +120,7 @@ class Department
      */
     public function setSortKey(int $sortKey) : self
     {
+        $this->initialized['sortKey'] = true;
         $this->sortKey = $sortKey;
         return $this;
     }

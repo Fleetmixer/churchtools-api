@@ -2,46 +2,54 @@
 
 namespace ChurchTools\Api2\Model;
 
-class ServiceGroup
+class ServiceGroup extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var int
      */
     protected $id;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $name;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $sortKey;
     /**
-     *
+     * 
      *
      * @var bool
      */
     protected $viewAll;
     /**
-     *
+     * 
      *
      * @var int|null
      */
     protected $campusId;
     /**
-     *
+     * 
      *
      * @var bool
      */
     protected $onlyVisibleInCampusFilter;
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -50,7 +58,7 @@ class ServiceGroup
         return $this->id;
     }
     /**
-     *
+     * 
      *
      * @param int $id
      *
@@ -58,11 +66,12 @@ class ServiceGroup
      */
     public function setId(int $id) : self
     {
+        $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -71,7 +80,7 @@ class ServiceGroup
         return $this->name;
     }
     /**
-     *
+     * 
      *
      * @param string $name
      *
@@ -79,11 +88,12 @@ class ServiceGroup
      */
     public function setName(string $name) : self
     {
+        $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -92,7 +102,7 @@ class ServiceGroup
         return $this->sortKey;
     }
     /**
-     *
+     * 
      *
      * @param int $sortKey
      *
@@ -100,11 +110,12 @@ class ServiceGroup
      */
     public function setSortKey(int $sortKey) : self
     {
+        $this->initialized['sortKey'] = true;
         $this->sortKey = $sortKey;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -113,7 +124,7 @@ class ServiceGroup
         return $this->viewAll;
     }
     /**
-     *
+     * 
      *
      * @param bool $viewAll
      *
@@ -121,11 +132,12 @@ class ServiceGroup
      */
     public function setViewAll(bool $viewAll) : self
     {
+        $this->initialized['viewAll'] = true;
         $this->viewAll = $viewAll;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int|null
      */
@@ -134,7 +146,7 @@ class ServiceGroup
         return $this->campusId;
     }
     /**
-     *
+     * 
      *
      * @param int|null $campusId
      *
@@ -142,11 +154,12 @@ class ServiceGroup
      */
     public function setCampusId(?int $campusId) : self
     {
+        $this->initialized['campusId'] = true;
         $this->campusId = $campusId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -155,7 +168,7 @@ class ServiceGroup
         return $this->onlyVisibleInCampusFilter;
     }
     /**
-     *
+     * 
      *
      * @param bool $onlyVisibleInCampusFilter
      *
@@ -163,6 +176,7 @@ class ServiceGroup
      */
     public function setOnlyVisibleInCampusFilter(bool $onlyVisibleInCampusFilter) : self
     {
+        $this->initialized['onlyVisibleInCampusFilter'] = true;
         $this->onlyVisibleInCampusFilter = $onlyVisibleInCampusFilter;
         return $this;
     }

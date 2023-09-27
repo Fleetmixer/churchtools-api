@@ -2,22 +2,30 @@
 
 namespace ChurchTools\Api2\Model;
 
-class StatusesPostResponse201
+class StatusesPostResponse201 extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var Status
      */
     protected $data;
     /**
-     *
+     * 
      *
      * @var StatusesPostResponse201Meta
      */
     protected $meta;
     /**
-     *
+     * 
      *
      * @return Status
      */
@@ -26,7 +34,7 @@ class StatusesPostResponse201
         return $this->data;
     }
     /**
-     *
+     * 
      *
      * @param Status $data
      *
@@ -34,11 +42,12 @@ class StatusesPostResponse201
      */
     public function setData(Status $data) : self
     {
+        $this->initialized['data'] = true;
         $this->data = $data;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return StatusesPostResponse201Meta
      */
@@ -47,7 +56,7 @@ class StatusesPostResponse201
         return $this->meta;
     }
     /**
-     *
+     * 
      *
      * @param StatusesPostResponse201Meta $meta
      *
@@ -55,6 +64,7 @@ class StatusesPostResponse201
      */
     public function setMeta(StatusesPostResponse201Meta $meta) : self
     {
+        $this->initialized['meta'] = true;
         $this->meta = $meta;
         return $this;
     }

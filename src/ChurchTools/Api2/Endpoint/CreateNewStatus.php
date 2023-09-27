@@ -2,18 +2,18 @@
 
 namespace ChurchTools\Api2\Endpoint;
 
-class CreateNewStatus extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jane\OpenApiRuntime\Client\Psr7Endpoint
+class CreateNewStatus extends \ChurchTools\Api2\Runtime\Client\BaseEndpoint implements \ChurchTools\Api2\Runtime\Client\Endpoint
 {
     /**
+     * 
      *
-     *
-     * @param \ChurchTools\Api2\Model\StatusesPostBody|\stdClass $requestBody
+     * @param \ChurchTools\Api2\Model\StatusesPostBody|\stdClass $requestBody 
      */
     public function __construct($requestBody)
     {
         $this->body = $requestBody;
     }
-    use \Jane\OpenApiRuntime\Client\Psr7EndpointTrait;
+    use \ChurchTools\Api2\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'POST';
@@ -43,13 +43,19 @@ class CreateNewStatus extends \Jane\OpenApiRuntime\Client\BaseEndpoint implement
      *
      * @return null|\ChurchTools\Api2\Model\StatusesPostResponse201
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
-        if (201 === $status && mb_strpos($contentType, 'application/json') !== false) {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
+        if (is_null($contentType) === false && (201 === $status && mb_strpos($contentType, 'application/json') !== false)) {
             return $serializer->deserialize($body, 'ChurchTools\\Api2\\Model\\StatusesPostResponse201', 'json');
         }
         if (400 === $status) {
-            throw new \ChurchTools\Api2\Exception\CreateNewStatusBadRequestException();
+            throw new \ChurchTools\Api2\Exception\CreateNewStatusBadRequestException($response);
         }
+    }
+    public function getAuthenticationScopes() : array
+    {
+        return array('login_token');
     }
 }

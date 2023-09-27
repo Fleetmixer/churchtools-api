@@ -2,8 +2,16 @@
 
 namespace ChurchTools\Api2\Model;
 
-class PersonsIdSettingsModuleAttributePutResponse200
+class PersonsIdSettingsModuleAttributePutResponse200 extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * Piece of meta information about a person, like is this person using two factor authentication or does she want service remind mails.
      *
@@ -28,6 +36,7 @@ class PersonsIdSettingsModuleAttributePutResponse200
      */
     public function setData(PersonSetting $data) : self
     {
+        $this->initialized['data'] = true;
         $this->data = $data;
         return $this;
     }

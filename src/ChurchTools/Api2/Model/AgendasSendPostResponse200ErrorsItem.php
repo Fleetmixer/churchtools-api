@@ -2,52 +2,60 @@
 
 namespace ChurchTools\Api2\Model;
 
-class AgendasSendPostResponse200ErrorsItem
+class AgendasSendPostResponse200ErrorsItem extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var string
      */
     protected $titel;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $domainType;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $domainIdentifier;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $apiUrl;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $frontendUrl;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $imageUrl;
     /**
-     *
+     * 
      *
      * @var AgendasSendPostResponse200ErrorsItemDomainAttributes
      */
     protected $domainAttributes;
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -56,7 +64,7 @@ class AgendasSendPostResponse200ErrorsItem
         return $this->titel;
     }
     /**
-     *
+     * 
      *
      * @param string $titel
      *
@@ -64,11 +72,12 @@ class AgendasSendPostResponse200ErrorsItem
      */
     public function setTitel(string $titel) : self
     {
+        $this->initialized['titel'] = true;
         $this->titel = $titel;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -77,7 +86,7 @@ class AgendasSendPostResponse200ErrorsItem
         return $this->domainType;
     }
     /**
-     *
+     * 
      *
      * @param string $domainType
      *
@@ -85,11 +94,12 @@ class AgendasSendPostResponse200ErrorsItem
      */
     public function setDomainType(string $domainType) : self
     {
+        $this->initialized['domainType'] = true;
         $this->domainType = $domainType;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -98,7 +108,7 @@ class AgendasSendPostResponse200ErrorsItem
         return $this->domainIdentifier;
     }
     /**
-     *
+     * 
      *
      * @param string $domainIdentifier
      *
@@ -106,11 +116,12 @@ class AgendasSendPostResponse200ErrorsItem
      */
     public function setDomainIdentifier(string $domainIdentifier) : self
     {
+        $this->initialized['domainIdentifier'] = true;
         $this->domainIdentifier = $domainIdentifier;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -119,7 +130,7 @@ class AgendasSendPostResponse200ErrorsItem
         return $this->apiUrl;
     }
     /**
-     *
+     * 
      *
      * @param string $apiUrl
      *
@@ -127,11 +138,12 @@ class AgendasSendPostResponse200ErrorsItem
      */
     public function setApiUrl(string $apiUrl) : self
     {
+        $this->initialized['apiUrl'] = true;
         $this->apiUrl = $apiUrl;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -140,7 +152,7 @@ class AgendasSendPostResponse200ErrorsItem
         return $this->frontendUrl;
     }
     /**
-     *
+     * 
      *
      * @param string $frontendUrl
      *
@@ -148,11 +160,12 @@ class AgendasSendPostResponse200ErrorsItem
      */
     public function setFrontendUrl(string $frontendUrl) : self
     {
+        $this->initialized['frontendUrl'] = true;
         $this->frontendUrl = $frontendUrl;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -161,7 +174,7 @@ class AgendasSendPostResponse200ErrorsItem
         return $this->imageUrl;
     }
     /**
-     *
+     * 
      *
      * @param string $imageUrl
      *
@@ -169,11 +182,12 @@ class AgendasSendPostResponse200ErrorsItem
      */
     public function setImageUrl(string $imageUrl) : self
     {
+        $this->initialized['imageUrl'] = true;
         $this->imageUrl = $imageUrl;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return AgendasSendPostResponse200ErrorsItemDomainAttributes
      */
@@ -182,7 +196,7 @@ class AgendasSendPostResponse200ErrorsItem
         return $this->domainAttributes;
     }
     /**
-     *
+     * 
      *
      * @param AgendasSendPostResponse200ErrorsItemDomainAttributes $domainAttributes
      *
@@ -190,6 +204,7 @@ class AgendasSendPostResponse200ErrorsItem
      */
     public function setDomainAttributes(AgendasSendPostResponse200ErrorsItemDomainAttributes $domainAttributes) : self
     {
+        $this->initialized['domainAttributes'] = true;
         $this->domainAttributes = $domainAttributes;
         return $this;
     }

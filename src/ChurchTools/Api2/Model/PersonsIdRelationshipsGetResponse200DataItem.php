@@ -2,28 +2,36 @@
 
 namespace ChurchTools\Api2\Model;
 
-class PersonsIdRelationshipsGetResponse200DataItem
+class PersonsIdRelationshipsGetResponse200DataItem extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var string
      */
     protected $relationshipName;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $degreeOfRelationship;
     /**
-     *
+     * 
      *
      * @var object
      */
     protected $relative;
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -32,7 +40,7 @@ class PersonsIdRelationshipsGetResponse200DataItem
         return $this->relationshipName;
     }
     /**
-     *
+     * 
      *
      * @param string $relationshipName
      *
@@ -40,11 +48,12 @@ class PersonsIdRelationshipsGetResponse200DataItem
      */
     public function setRelationshipName(string $relationshipName) : self
     {
+        $this->initialized['relationshipName'] = true;
         $this->relationshipName = $relationshipName;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -53,7 +62,7 @@ class PersonsIdRelationshipsGetResponse200DataItem
         return $this->degreeOfRelationship;
     }
     /**
-     *
+     * 
      *
      * @param string $degreeOfRelationship
      *
@@ -61,11 +70,12 @@ class PersonsIdRelationshipsGetResponse200DataItem
      */
     public function setDegreeOfRelationship(string $degreeOfRelationship) : self
     {
+        $this->initialized['degreeOfRelationship'] = true;
         $this->degreeOfRelationship = $degreeOfRelationship;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return object
      */
@@ -74,7 +84,7 @@ class PersonsIdRelationshipsGetResponse200DataItem
         return $this->relative;
     }
     /**
-     *
+     * 
      *
      * @param object $relative
      *
@@ -82,6 +92,7 @@ class PersonsIdRelationshipsGetResponse200DataItem
      */
     public function setRelative($relative) : self
     {
+        $this->initialized['relative'] = true;
         $this->relative = $relative;
         return $this;
     }

@@ -2,22 +2,30 @@
 
 namespace ChurchTools\Api2\Model;
 
-class FieldsGetResponse200
+class FieldsGetResponse200 extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var FieldsGetResponse200DataItem[]
      */
     protected $data;
     /**
-     *
+     * 
      *
      * @var FieldsGetResponse200Meta
      */
     protected $meta;
     /**
-     *
+     * 
      *
      * @return FieldsGetResponse200DataItem[]
      */
@@ -26,7 +34,7 @@ class FieldsGetResponse200
         return $this->data;
     }
     /**
-     *
+     * 
      *
      * @param FieldsGetResponse200DataItem[] $data
      *
@@ -34,11 +42,12 @@ class FieldsGetResponse200
      */
     public function setData(array $data) : self
     {
+        $this->initialized['data'] = true;
         $this->data = $data;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return FieldsGetResponse200Meta
      */
@@ -47,7 +56,7 @@ class FieldsGetResponse200
         return $this->meta;
     }
     /**
-     *
+     * 
      *
      * @param FieldsGetResponse200Meta $meta
      *
@@ -55,6 +64,7 @@ class FieldsGetResponse200
      */
     public function setMeta(FieldsGetResponse200Meta $meta) : self
     {
+        $this->initialized['meta'] = true;
         $this->meta = $meta;
         return $this;
     }

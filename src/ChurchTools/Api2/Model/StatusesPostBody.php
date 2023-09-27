@@ -2,46 +2,54 @@
 
 namespace ChurchTools\Api2\Model;
 
-class StatusesPostBody
+class StatusesPostBody extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var string
      */
     protected $name;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $shorty;
     /**
-     *
+     * 
      *
      * @var bool
      */
     protected $isMember;
     /**
-     *
+     * 
      *
      * @var bool
      */
     protected $isSearchable = true;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $sortKey = 10;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $securityLevelId = 1;
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -50,7 +58,7 @@ class StatusesPostBody
         return $this->name;
     }
     /**
-     *
+     * 
      *
      * @param string $name
      *
@@ -58,11 +66,12 @@ class StatusesPostBody
      */
     public function setName(string $name) : self
     {
+        $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -71,7 +80,7 @@ class StatusesPostBody
         return $this->shorty;
     }
     /**
-     *
+     * 
      *
      * @param string $shorty
      *
@@ -79,11 +88,12 @@ class StatusesPostBody
      */
     public function setShorty(string $shorty) : self
     {
+        $this->initialized['shorty'] = true;
         $this->shorty = $shorty;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -92,7 +102,7 @@ class StatusesPostBody
         return $this->isMember;
     }
     /**
-     *
+     * 
      *
      * @param bool $isMember
      *
@@ -100,11 +110,12 @@ class StatusesPostBody
      */
     public function setIsMember(bool $isMember) : self
     {
+        $this->initialized['isMember'] = true;
         $this->isMember = $isMember;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -113,7 +124,7 @@ class StatusesPostBody
         return $this->isSearchable;
     }
     /**
-     *
+     * 
      *
      * @param bool $isSearchable
      *
@@ -121,11 +132,12 @@ class StatusesPostBody
      */
     public function setIsSearchable(bool $isSearchable) : self
     {
+        $this->initialized['isSearchable'] = true;
         $this->isSearchable = $isSearchable;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -134,7 +146,7 @@ class StatusesPostBody
         return $this->sortKey;
     }
     /**
-     *
+     * 
      *
      * @param int $sortKey
      *
@@ -142,11 +154,12 @@ class StatusesPostBody
      */
     public function setSortKey(int $sortKey) : self
     {
+        $this->initialized['sortKey'] = true;
         $this->sortKey = $sortKey;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -155,7 +168,7 @@ class StatusesPostBody
         return $this->securityLevelId;
     }
     /**
-     *
+     * 
      *
      * @param int $securityLevelId
      *
@@ -163,6 +176,7 @@ class StatusesPostBody
      */
     public function setSecurityLevelId(int $securityLevelId) : self
     {
+        $this->initialized['securityLevelId'] = true;
         $this->securityLevelId = $securityLevelId;
         return $this;
     }

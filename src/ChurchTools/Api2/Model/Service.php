@@ -2,82 +2,90 @@
 
 namespace ChurchTools\Api2\Model;
 
-class Service
+class Service extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var int
      */
     protected $id;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $name;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $serviceGroupId;
     /**
-     *
+     * 
      *
      * @var bool
      */
     protected $commentOnConfirmation;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $sortKey;
     /**
-     *
+     * 
      *
      * @var bool
      */
     protected $allowDecline;
     /**
-     *
+     * 
      *
      * @var bool
      */
     protected $allowExchange;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $comment;
     /**
-     *
+     * 
      *
      * @var bool
      */
     protected $standard;
     /**
-     *
+     * 
      *
      * @var bool
      */
     protected $hidePersonName;
     /**
-     *
+     * 
      *
      * @var bool
      */
     protected $sendReminderMails;
     /**
-     *
+     * 
      *
      * @var bool
      */
     protected $sendServiceRequestEmails;
     /**
-     *
+     * 
      *
      * @var bool
      */
@@ -95,13 +103,13 @@ class Service
      */
     protected $tagIds;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $calTextTemplate;
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -110,7 +118,7 @@ class Service
         return $this->id;
     }
     /**
-     *
+     * 
      *
      * @param int $id
      *
@@ -118,11 +126,12 @@ class Service
      */
     public function setId(int $id) : self
     {
+        $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -131,7 +140,7 @@ class Service
         return $this->name;
     }
     /**
-     *
+     * 
      *
      * @param string $name
      *
@@ -139,11 +148,12 @@ class Service
      */
     public function setName(string $name) : self
     {
+        $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -152,7 +162,7 @@ class Service
         return $this->serviceGroupId;
     }
     /**
-     *
+     * 
      *
      * @param int $serviceGroupId
      *
@@ -160,11 +170,12 @@ class Service
      */
     public function setServiceGroupId(int $serviceGroupId) : self
     {
+        $this->initialized['serviceGroupId'] = true;
         $this->serviceGroupId = $serviceGroupId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -173,7 +184,7 @@ class Service
         return $this->commentOnConfirmation;
     }
     /**
-     *
+     * 
      *
      * @param bool $commentOnConfirmation
      *
@@ -181,11 +192,12 @@ class Service
      */
     public function setCommentOnConfirmation(bool $commentOnConfirmation) : self
     {
+        $this->initialized['commentOnConfirmation'] = true;
         $this->commentOnConfirmation = $commentOnConfirmation;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -194,7 +206,7 @@ class Service
         return $this->sortKey;
     }
     /**
-     *
+     * 
      *
      * @param int $sortKey
      *
@@ -202,11 +214,12 @@ class Service
      */
     public function setSortKey(int $sortKey) : self
     {
+        $this->initialized['sortKey'] = true;
         $this->sortKey = $sortKey;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -215,7 +228,7 @@ class Service
         return $this->allowDecline;
     }
     /**
-     *
+     * 
      *
      * @param bool $allowDecline
      *
@@ -223,11 +236,12 @@ class Service
      */
     public function setAllowDecline(bool $allowDecline) : self
     {
+        $this->initialized['allowDecline'] = true;
         $this->allowDecline = $allowDecline;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -236,7 +250,7 @@ class Service
         return $this->allowExchange;
     }
     /**
-     *
+     * 
      *
      * @param bool $allowExchange
      *
@@ -244,11 +258,12 @@ class Service
      */
     public function setAllowExchange(bool $allowExchange) : self
     {
+        $this->initialized['allowExchange'] = true;
         $this->allowExchange = $allowExchange;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -257,7 +272,7 @@ class Service
         return $this->comment;
     }
     /**
-     *
+     * 
      *
      * @param string $comment
      *
@@ -265,11 +280,12 @@ class Service
      */
     public function setComment(string $comment) : self
     {
+        $this->initialized['comment'] = true;
         $this->comment = $comment;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -278,7 +294,7 @@ class Service
         return $this->standard;
     }
     /**
-     *
+     * 
      *
      * @param bool $standard
      *
@@ -286,11 +302,12 @@ class Service
      */
     public function setStandard(bool $standard) : self
     {
+        $this->initialized['standard'] = true;
         $this->standard = $standard;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -299,7 +316,7 @@ class Service
         return $this->hidePersonName;
     }
     /**
-     *
+     * 
      *
      * @param bool $hidePersonName
      *
@@ -307,11 +324,12 @@ class Service
      */
     public function setHidePersonName(bool $hidePersonName) : self
     {
+        $this->initialized['hidePersonName'] = true;
         $this->hidePersonName = $hidePersonName;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -320,7 +338,7 @@ class Service
         return $this->sendReminderMails;
     }
     /**
-     *
+     * 
      *
      * @param bool $sendReminderMails
      *
@@ -328,11 +346,12 @@ class Service
      */
     public function setSendReminderMails(bool $sendReminderMails) : self
     {
+        $this->initialized['sendReminderMails'] = true;
         $this->sendReminderMails = $sendReminderMails;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -341,7 +360,7 @@ class Service
         return $this->sendServiceRequestEmails;
     }
     /**
-     *
+     * 
      *
      * @param bool $sendServiceRequestEmails
      *
@@ -349,11 +368,12 @@ class Service
      */
     public function setSendServiceRequestEmails(bool $sendServiceRequestEmails) : self
     {
+        $this->initialized['sendServiceRequestEmails'] = true;
         $this->sendServiceRequestEmails = $sendServiceRequestEmails;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -362,7 +382,7 @@ class Service
         return $this->allowControlLiveAgenda;
     }
     /**
-     *
+     * 
      *
      * @param bool $allowControlLiveAgenda
      *
@@ -370,6 +390,7 @@ class Service
      */
     public function setAllowControlLiveAgenda(bool $allowControlLiveAgenda) : self
     {
+        $this->initialized['allowControlLiveAgenda'] = true;
         $this->allowControlLiveAgenda = $allowControlLiveAgenda;
         return $this;
     }
@@ -391,6 +412,7 @@ class Service
      */
     public function setGroupIds(?string $groupIds) : self
     {
+        $this->initialized['groupIds'] = true;
         $this->groupIds = $groupIds;
         return $this;
     }
@@ -412,11 +434,12 @@ class Service
      */
     public function setTagIds(?string $tagIds) : self
     {
+        $this->initialized['tagIds'] = true;
         $this->tagIds = $tagIds;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -425,7 +448,7 @@ class Service
         return $this->calTextTemplate;
     }
     /**
-     *
+     * 
      *
      * @param string $calTextTemplate
      *
@@ -433,6 +456,7 @@ class Service
      */
     public function setCalTextTemplate(string $calTextTemplate) : self
     {
+        $this->initialized['calTextTemplate'] = true;
         $this->calTextTemplate = $calTextTemplate;
         return $this;
     }

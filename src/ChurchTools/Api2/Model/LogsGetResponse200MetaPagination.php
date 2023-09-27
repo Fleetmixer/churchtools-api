@@ -2,8 +2,16 @@
 
 namespace ChurchTools\Api2\Model;
 
-class LogsGetResponse200MetaPagination
+class LogsGetResponse200MetaPagination extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * Total number of results.
      *
@@ -46,6 +54,7 @@ class LogsGetResponse200MetaPagination
      */
     public function setTotal(int $total) : self
     {
+        $this->initialized['total'] = true;
         $this->total = $total;
         return $this;
     }
@@ -67,6 +76,7 @@ class LogsGetResponse200MetaPagination
      */
     public function setCurrent(int $current) : self
     {
+        $this->initialized['current'] = true;
         $this->current = $current;
         return $this;
     }
@@ -88,6 +98,7 @@ class LogsGetResponse200MetaPagination
      */
     public function setLimit(int $limit) : self
     {
+        $this->initialized['limit'] = true;
         $this->limit = $limit;
         return $this;
     }
@@ -109,6 +120,7 @@ class LogsGetResponse200MetaPagination
      */
     public function setLastPage(int $lastPage) : self
     {
+        $this->initialized['lastPage'] = true;
         $this->lastPage = $lastPage;
         return $this;
     }

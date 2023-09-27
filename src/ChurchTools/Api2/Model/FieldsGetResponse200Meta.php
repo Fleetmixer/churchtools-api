@@ -2,16 +2,24 @@
 
 namespace ChurchTools\Api2\Model;
 
-class FieldsGetResponse200Meta
+class FieldsGetResponse200Meta extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var int
      */
     protected $count;
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -20,7 +28,7 @@ class FieldsGetResponse200Meta
         return $this->count;
     }
     /**
-     *
+     * 
      *
      * @param int $count
      *
@@ -28,6 +36,7 @@ class FieldsGetResponse200Meta
      */
     public function setCount(int $count) : self
     {
+        $this->initialized['count'] = true;
         $this->count = $count;
         return $this;
     }

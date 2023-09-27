@@ -2,34 +2,42 @@
 
 namespace ChurchTools\Api2\Model;
 
-class File
+class File extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var int
      */
     protected $id;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $name;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $filename;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $url;
     /**
-     *
+     * 
      *
      * @var string
      */
@@ -41,19 +49,19 @@ class File
      */
     protected $size;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $domainType;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $domainIdentifier;
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -62,7 +70,7 @@ class File
         return $this->id;
     }
     /**
-     *
+     * 
      *
      * @param int $id
      *
@@ -70,11 +78,12 @@ class File
      */
     public function setId(int $id) : self
     {
+        $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -83,7 +92,7 @@ class File
         return $this->name;
     }
     /**
-     *
+     * 
      *
      * @param string $name
      *
@@ -91,11 +100,12 @@ class File
      */
     public function setName(string $name) : self
     {
+        $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -104,7 +114,7 @@ class File
         return $this->filename;
     }
     /**
-     *
+     * 
      *
      * @param string $filename
      *
@@ -112,11 +122,12 @@ class File
      */
     public function setFilename(string $filename) : self
     {
+        $this->initialized['filename'] = true;
         $this->filename = $filename;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -125,7 +136,7 @@ class File
         return $this->url;
     }
     /**
-     *
+     * 
      *
      * @param string $url
      *
@@ -133,11 +144,12 @@ class File
      */
     public function setUrl(string $url) : self
     {
+        $this->initialized['url'] = true;
         $this->url = $url;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -146,7 +158,7 @@ class File
         return $this->relativeUrl;
     }
     /**
-     *
+     * 
      *
      * @param string $relativeUrl
      *
@@ -154,6 +166,7 @@ class File
      */
     public function setRelativeUrl(string $relativeUrl) : self
     {
+        $this->initialized['relativeUrl'] = true;
         $this->relativeUrl = $relativeUrl;
         return $this;
     }
@@ -175,11 +188,12 @@ class File
      */
     public function setSize(int $size) : self
     {
+        $this->initialized['size'] = true;
         $this->size = $size;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -188,7 +202,7 @@ class File
         return $this->domainType;
     }
     /**
-     *
+     * 
      *
      * @param string $domainType
      *
@@ -196,11 +210,12 @@ class File
      */
     public function setDomainType(string $domainType) : self
     {
+        $this->initialized['domainType'] = true;
         $this->domainType = $domainType;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -209,7 +224,7 @@ class File
         return $this->domainIdentifier;
     }
     /**
-     *
+     * 
      *
      * @param string $domainIdentifier
      *
@@ -217,6 +232,7 @@ class File
      */
     public function setDomainIdentifier(string $domainIdentifier) : self
     {
+        $this->initialized['domainIdentifier'] = true;
         $this->domainIdentifier = $domainIdentifier;
         return $this;
     }

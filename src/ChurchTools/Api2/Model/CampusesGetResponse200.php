@@ -2,22 +2,30 @@
 
 namespace ChurchTools\Api2\Model;
 
-class CampusesGetResponse200
+class CampusesGetResponse200 extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var Campus[]
      */
     protected $data;
     /**
-     *
+     * 
      *
      * @var CampusesGetResponse200Meta
      */
     protected $meta;
     /**
-     *
+     * 
      *
      * @return Campus[]
      */
@@ -26,7 +34,7 @@ class CampusesGetResponse200
         return $this->data;
     }
     /**
-     *
+     * 
      *
      * @param Campus[] $data
      *
@@ -34,11 +42,12 @@ class CampusesGetResponse200
      */
     public function setData(array $data) : self
     {
+        $this->initialized['data'] = true;
         $this->data = $data;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return CampusesGetResponse200Meta
      */
@@ -47,7 +56,7 @@ class CampusesGetResponse200
         return $this->meta;
     }
     /**
-     *
+     * 
      *
      * @param CampusesGetResponse200Meta $meta
      *
@@ -55,6 +64,7 @@ class CampusesGetResponse200
      */
     public function setMeta(CampusesGetResponse200Meta $meta) : self
     {
+        $this->initialized['meta'] = true;
         $this->meta = $meta;
         return $this;
     }

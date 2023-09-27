@@ -2,8 +2,16 @@
 
 namespace ChurchTools\Api2\Model;
 
-class Role
+class Role extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * ID of this group type role.
      *
@@ -88,6 +96,7 @@ class Role
      */
     public function setId(int $id) : self
     {
+        $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
@@ -109,6 +118,7 @@ class Role
      */
     public function setGroupTypeId(int $groupTypeId) : self
     {
+        $this->initialized['groupTypeId'] = true;
         $this->groupTypeId = $groupTypeId;
         return $this;
     }
@@ -130,6 +140,7 @@ class Role
      */
     public function setName(string $name) : self
     {
+        $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
     }
@@ -151,6 +162,7 @@ class Role
      */
     public function setShorty(string $shorty) : self
     {
+        $this->initialized['shorty'] = true;
         $this->shorty = $shorty;
         return $this;
     }
@@ -172,6 +184,7 @@ class Role
      */
     public function setSortKey(int $sortKey) : self
     {
+        $this->initialized['sortKey'] = true;
         $this->sortKey = $sortKey;
         return $this;
     }
@@ -193,6 +206,7 @@ class Role
      */
     public function setToDelete(bool $toDelete) : self
     {
+        $this->initialized['toDelete'] = true;
         $this->toDelete = $toDelete;
         return $this;
     }
@@ -214,6 +228,7 @@ class Role
      */
     public function setHasRequested(bool $hasRequested) : self
     {
+        $this->initialized['hasRequested'] = true;
         $this->hasRequested = $hasRequested;
         return $this;
     }
@@ -235,6 +250,7 @@ class Role
      */
     public function setIsLeader(bool $isLeader) : self
     {
+        $this->initialized['isLeader'] = true;
         $this->isLeader = $isLeader;
         return $this;
     }
@@ -256,6 +272,7 @@ class Role
      */
     public function setIsDefault(bool $isDefault) : self
     {
+        $this->initialized['isDefault'] = true;
         $this->isDefault = $isDefault;
         return $this;
     }
@@ -277,6 +294,7 @@ class Role
      */
     public function setIsHidden(bool $isHidden) : self
     {
+        $this->initialized['isHidden'] = true;
         $this->isHidden = $isHidden;
         return $this;
     }
@@ -298,6 +316,7 @@ class Role
      */
     public function setGrowPathId(?int $growPathId) : self
     {
+        $this->initialized['growPathId'] = true;
         $this->growPathId = $growPathId;
         return $this;
     }

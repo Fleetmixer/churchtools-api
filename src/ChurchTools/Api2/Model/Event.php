@@ -2,46 +2,54 @@
 
 namespace ChurchTools\Api2\Model;
 
-class Event
+class Event extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var int
      */
     protected $id;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $name;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $description;
     /**
+     * 
      *
-     *
-     * @var string
+     * @var \DateTime
      */
     protected $startDate;
     /**
+     * 
      *
-     *
-     * @var string
+     * @var \DateTime
      */
     protected $endDate;
     /**
-     *
+     * 
      *
      * @var EventEventServicesItem[]
      */
     protected $eventServices;
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -50,7 +58,7 @@ class Event
         return $this->id;
     }
     /**
-     *
+     * 
      *
      * @param int $id
      *
@@ -58,11 +66,12 @@ class Event
      */
     public function setId(int $id) : self
     {
+        $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -71,7 +80,7 @@ class Event
         return $this->name;
     }
     /**
-     *
+     * 
      *
      * @param string $name
      *
@@ -79,11 +88,12 @@ class Event
      */
     public function setName(string $name) : self
     {
+        $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -92,7 +102,7 @@ class Event
         return $this->description;
     }
     /**
-     *
+     * 
      *
      * @param string $description
      *
@@ -100,53 +110,56 @@ class Event
      */
     public function setDescription(string $description) : self
     {
+        $this->initialized['description'] = true;
         $this->description = $description;
         return $this;
     }
     /**
+     * 
      *
-     *
-     * @return string
+     * @return \DateTime
      */
-    public function getStartDate() : string
+    public function getStartDate() : \DateTime
     {
         return $this->startDate;
     }
     /**
+     * 
      *
-     *
-     * @param string $startDate
+     * @param \DateTime $startDate
      *
      * @return self
      */
-    public function setStartDate(string $startDate) : self
+    public function setStartDate(\DateTime $startDate) : self
     {
+        $this->initialized['startDate'] = true;
         $this->startDate = $startDate;
         return $this;
     }
     /**
+     * 
      *
-     *
-     * @return string
+     * @return \DateTime
      */
-    public function getEndDate() : string
+    public function getEndDate() : \DateTime
     {
         return $this->endDate;
     }
     /**
+     * 
      *
-     *
-     * @param string $endDate
+     * @param \DateTime $endDate
      *
      * @return self
      */
-    public function setEndDate(string $endDate) : self
+    public function setEndDate(\DateTime $endDate) : self
     {
+        $this->initialized['endDate'] = true;
         $this->endDate = $endDate;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return EventEventServicesItem[]
      */
@@ -155,7 +168,7 @@ class Event
         return $this->eventServices;
     }
     /**
-     *
+     * 
      *
      * @param EventEventServicesItem[] $eventServices
      *
@@ -163,6 +176,7 @@ class Event
      */
     public function setEventServices(array $eventServices) : self
     {
+        $this->initialized['eventServices'] = true;
         $this->eventServices = $eventServices;
         return $this;
     }

@@ -2,22 +2,30 @@
 
 namespace ChurchTools\Api2\Model;
 
-class MasterdataPersonRolesGetResponse200
+class MasterdataPersonRolesGetResponse200 extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var Role[]
      */
     protected $data;
     /**
-     *
+     * 
      *
      * @var MasterdataPersonRolesGetResponse200Meta
      */
     protected $meta;
     /**
-     *
+     * 
      *
      * @return Role[]
      */
@@ -26,7 +34,7 @@ class MasterdataPersonRolesGetResponse200
         return $this->data;
     }
     /**
-     *
+     * 
      *
      * @param Role[] $data
      *
@@ -34,11 +42,12 @@ class MasterdataPersonRolesGetResponse200
      */
     public function setData(array $data) : self
     {
+        $this->initialized['data'] = true;
         $this->data = $data;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return MasterdataPersonRolesGetResponse200Meta
      */
@@ -47,7 +56,7 @@ class MasterdataPersonRolesGetResponse200
         return $this->meta;
     }
     /**
-     *
+     * 
      *
      * @param MasterdataPersonRolesGetResponse200Meta $meta
      *
@@ -55,6 +64,7 @@ class MasterdataPersonRolesGetResponse200
      */
     public function setMeta(MasterdataPersonRolesGetResponse200Meta $meta) : self
     {
+        $this->initialized['meta'] = true;
         $this->meta = $meta;
         return $this;
     }

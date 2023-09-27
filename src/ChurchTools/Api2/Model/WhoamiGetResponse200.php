@@ -2,8 +2,16 @@
 
 namespace ChurchTools\Api2\Model;
 
-class WhoamiGetResponse200
+class WhoamiGetResponse200 extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * A person object includes all fields the logged in user may see depending on the security level. Additional DB fields, created by the admin, are also part of the response. Those fields have the same name as the column name.
      *
@@ -28,6 +36,7 @@ class WhoamiGetResponse200
      */
     public function setData(Person $data) : self
     {
+        $this->initialized['data'] = true;
         $this->data = $data;
         return $this;
     }

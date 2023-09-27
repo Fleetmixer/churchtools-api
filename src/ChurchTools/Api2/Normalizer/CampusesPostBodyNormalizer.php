@@ -2,7 +2,9 @@
 
 namespace ChurchTools\Api2\Normalizer;
 
-use Jane\JsonSchemaRuntime\Reference;
+use Jane\Component\JsonSchemaRuntime\Reference;
+use ChurchTools\Api2\Runtime\Normalizer\CheckArray;
+use ChurchTools\Api2\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -10,42 +12,74 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-
 class CampusesPostBodyNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
-    public function supportsDenormalization($data, $type, $format = null)
+    use CheckArray;
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null, array $context = array()) : bool
     {
         return $type === 'ChurchTools\\Api2\\Model\\CampusesPostBody';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null, array $context = array()) : bool
     {
         return is_object($data) && get_class($data) === 'ChurchTools\\Api2\\Model\\CampusesPostBody';
     }
+    /**
+     * @return mixed
+     */
     public function denormalize($data, $class, $format = null, array $context = array())
     {
-        if (!is_object($data)) {
-            throw new InvalidArgumentException();
+        if (isset($data['$ref'])) {
+            return new Reference($data['$ref'], $context['document-origin']);
+        }
+        if (isset($data['$recursiveRef'])) {
+            return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         $object = new \ChurchTools\Api2\Model\CampusesPostBody();
-        if (property_exists($data, 'name')) {
-            $object->setName($data->{'name'});
+        if (null === $data || false === \is_array($data)) {
+            return $object;
         }
-        if (property_exists($data, 'shorty')) {
-            $object->setShorty($data->{'shorty'});
+        if (\array_key_exists('name', $data)) {
+            $object->setName($data['name']);
+            unset($data['name']);
         }
-        if (property_exists($data, 'sortKey')) {
-            $object->setSortKey($data->{'sortKey'});
+        if (\array_key_exists('shorty', $data)) {
+            $object->setShorty($data['shorty']);
+            unset($data['shorty']);
+        }
+        if (\array_key_exists('sortKey', $data)) {
+            $object->setSortKey($data['sortKey']);
+            unset($data['sortKey']);
+        }
+        foreach ($data as $key => $value) {
+            if (preg_match('/.*/', (string) $key)) {
+                $object[$key] = $value;
+            }
         }
         return $object;
     }
+    /**
+     * @return array|string|int|float|bool|\ArrayObject|null
+     */
     public function normalize($object, $format = null, array $context = array())
     {
-        $data = new \stdClass();
-        $data->{'name'} = $object->getName();
-        $data->{'shorty'} = $object->getShorty();
-        $data->{'sortKey'} = $object->getSortKey();
+        $data = array();
+        $data['name'] = $object->getName();
+        $data['shorty'] = $object->getShorty();
+        if ($object->isInitialized('sortKey') && null !== $object->getSortKey()) {
+            $data['sortKey'] = $object->getSortKey();
+        }
+        foreach ($object as $key => $value) {
+            if (preg_match('/.*/', (string) $key)) {
+                $data[$key] = $value;
+            }
+        }
         return $data;
+    }
+    public function getSupportedTypes(?string $format = null) : array
+    {
+        return array('ChurchTools\\Api2\\Model\\CampusesPostBody' => false);
     }
 }

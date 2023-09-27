@@ -2,9 +2,9 @@
 
 namespace ChurchTools\Api2\Endpoint;
 
-class GetAllGroupTypeRoles extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jane\OpenApiRuntime\Client\Psr7Endpoint
+class GetAllGroupTypeRoles extends \ChurchTools\Api2\Runtime\Client\BaseEndpoint implements \ChurchTools\Api2\Runtime\Client\Endpoint
 {
-    use \Jane\OpenApiRuntime\Client\Psr7EndpointTrait;
+    use \ChurchTools\Api2\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'GET';
@@ -29,16 +29,22 @@ class GetAllGroupTypeRoles extends \Jane\OpenApiRuntime\Client\BaseEndpoint impl
      *
      * @return null|\ChurchTools\Api2\Model\MasterdataPersonRolesGetResponse200
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
-        if (200 === $status && mb_strpos($contentType, 'application/json') !== false) {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
+        if (is_null($contentType) === false && (200 === $status && mb_strpos($contentType, 'application/json') !== false)) {
             return $serializer->deserialize($body, 'ChurchTools\\Api2\\Model\\MasterdataPersonRolesGetResponse200', 'json');
         }
         if (401 === $status) {
-            throw new \ChurchTools\Api2\Exception\GetAllGroupTypeRolesUnauthorizedException();
+            throw new \ChurchTools\Api2\Exception\GetAllGroupTypeRolesUnauthorizedException($response);
         }
         if (403 === $status) {
-            throw new \ChurchTools\Api2\Exception\GetAllGroupTypeRolesForbiddenException();
+            throw new \ChurchTools\Api2\Exception\GetAllGroupTypeRolesForbiddenException($response);
         }
+    }
+    public function getAuthenticationScopes() : array
+    {
+        return array('login_token');
     }
 }

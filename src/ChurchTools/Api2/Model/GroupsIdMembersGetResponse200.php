@@ -2,22 +2,30 @@
 
 namespace ChurchTools\Api2\Model;
 
-class GroupsIdMembersGetResponse200
+class GroupsIdMembersGetResponse200 extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var GroupMember[]
      */
     protected $data;
     /**
-     *
+     * 
      *
      * @var GroupsIdMembersGetResponse200Meta
      */
     protected $meta;
     /**
-     *
+     * 
      *
      * @return GroupMember[]
      */
@@ -26,7 +34,7 @@ class GroupsIdMembersGetResponse200
         return $this->data;
     }
     /**
-     *
+     * 
      *
      * @param GroupMember[] $data
      *
@@ -34,11 +42,12 @@ class GroupsIdMembersGetResponse200
      */
     public function setData(array $data) : self
     {
+        $this->initialized['data'] = true;
         $this->data = $data;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return GroupsIdMembersGetResponse200Meta
      */
@@ -47,7 +56,7 @@ class GroupsIdMembersGetResponse200
         return $this->meta;
     }
     /**
-     *
+     * 
      *
      * @param GroupsIdMembersGetResponse200Meta $meta
      *
@@ -55,6 +64,7 @@ class GroupsIdMembersGetResponse200
      */
     public function setMeta(GroupsIdMembersGetResponse200Meta $meta) : self
     {
+        $this->initialized['meta'] = true;
         $this->meta = $meta;
         return $this;
     }

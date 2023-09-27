@@ -2,16 +2,24 @@
 
 namespace ChurchTools\Api2\Model;
 
-class StatusesIdPutResponse200
+class StatusesIdPutResponse200 extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var Status
      */
     protected $data;
     /**
-     *
+     * 
      *
      * @return Status
      */
@@ -20,7 +28,7 @@ class StatusesIdPutResponse200
         return $this->data;
     }
     /**
-     *
+     * 
      *
      * @param Status $data
      *
@@ -28,6 +36,7 @@ class StatusesIdPutResponse200
      */
     public function setData(Status $data) : self
     {
+        $this->initialized['data'] = true;
         $this->data = $data;
         return $this;
     }

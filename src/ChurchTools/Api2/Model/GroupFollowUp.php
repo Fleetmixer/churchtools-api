@@ -2,40 +2,48 @@
 
 namespace ChurchTools\Api2\Model;
 
-class GroupFollowUp
+class GroupFollowUp extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var int
      */
     protected $typeId;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $targetTypeId;
     /**
-     *
+     * 
      *
      * @var int|null
      */
     protected $targetObjectId;
     /**
-     *
+     * 
      *
      * @var int|null
      */
     protected $targetGroupMemberStatusId;
     /**
-     *
+     * 
      *
      * @var bool
      */
     protected $sendReminderMails;
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -44,7 +52,7 @@ class GroupFollowUp
         return $this->typeId;
     }
     /**
-     *
+     * 
      *
      * @param int $typeId
      *
@@ -52,11 +60,12 @@ class GroupFollowUp
      */
     public function setTypeId(int $typeId) : self
     {
+        $this->initialized['typeId'] = true;
         $this->typeId = $typeId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -65,7 +74,7 @@ class GroupFollowUp
         return $this->targetTypeId;
     }
     /**
-     *
+     * 
      *
      * @param int $targetTypeId
      *
@@ -73,11 +82,12 @@ class GroupFollowUp
      */
     public function setTargetTypeId(int $targetTypeId) : self
     {
+        $this->initialized['targetTypeId'] = true;
         $this->targetTypeId = $targetTypeId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int|null
      */
@@ -86,7 +96,7 @@ class GroupFollowUp
         return $this->targetObjectId;
     }
     /**
-     *
+     * 
      *
      * @param int|null $targetObjectId
      *
@@ -94,11 +104,12 @@ class GroupFollowUp
      */
     public function setTargetObjectId(?int $targetObjectId) : self
     {
+        $this->initialized['targetObjectId'] = true;
         $this->targetObjectId = $targetObjectId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int|null
      */
@@ -107,7 +118,7 @@ class GroupFollowUp
         return $this->targetGroupMemberStatusId;
     }
     /**
-     *
+     * 
      *
      * @param int|null $targetGroupMemberStatusId
      *
@@ -115,11 +126,12 @@ class GroupFollowUp
      */
     public function setTargetGroupMemberStatusId(?int $targetGroupMemberStatusId) : self
     {
+        $this->initialized['targetGroupMemberStatusId'] = true;
         $this->targetGroupMemberStatusId = $targetGroupMemberStatusId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -128,7 +140,7 @@ class GroupFollowUp
         return $this->sendReminderMails;
     }
     /**
-     *
+     * 
      *
      * @param bool $sendReminderMails
      *
@@ -136,6 +148,7 @@ class GroupFollowUp
      */
     public function setSendReminderMails(bool $sendReminderMails) : self
     {
+        $this->initialized['sendReminderMails'] = true;
         $this->sendReminderMails = $sendReminderMails;
         return $this;
     }

@@ -2,22 +2,30 @@
 
 namespace ChurchTools\Api2\Model;
 
-class LogsGetResponse200
+class LogsGetResponse200 extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var Log[]
      */
     protected $data;
     /**
-     *
+     * 
      *
      * @var LogsGetResponse200Meta
      */
     protected $meta;
     /**
-     *
+     * 
      *
      * @return Log[]
      */
@@ -26,7 +34,7 @@ class LogsGetResponse200
         return $this->data;
     }
     /**
-     *
+     * 
      *
      * @param Log[] $data
      *
@@ -34,11 +42,12 @@ class LogsGetResponse200
      */
     public function setData(array $data) : self
     {
+        $this->initialized['data'] = true;
         $this->data = $data;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return LogsGetResponse200Meta
      */
@@ -47,7 +56,7 @@ class LogsGetResponse200
         return $this->meta;
     }
     /**
-     *
+     * 
      *
      * @param LogsGetResponse200Meta $meta
      *
@@ -55,6 +64,7 @@ class LogsGetResponse200
      */
     public function setMeta(LogsGetResponse200Meta $meta) : self
     {
+        $this->initialized['meta'] = true;
         $this->meta = $meta;
         return $this;
     }

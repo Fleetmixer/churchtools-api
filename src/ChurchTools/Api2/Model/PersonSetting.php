@@ -2,16 +2,24 @@
 
 namespace ChurchTools\Api2\Model;
 
-class PersonSetting
+class PersonSetting extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var string
      */
     protected $module;
     /**
-     *
+     * 
      *
      * @var string
      */
@@ -23,7 +31,7 @@ class PersonSetting
      */
     protected $value;
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -32,7 +40,7 @@ class PersonSetting
         return $this->module;
     }
     /**
-     *
+     * 
      *
      * @param string $module
      *
@@ -40,11 +48,12 @@ class PersonSetting
      */
     public function setModule(string $module) : self
     {
+        $this->initialized['module'] = true;
         $this->module = $module;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -53,7 +62,7 @@ class PersonSetting
         return $this->attribute;
     }
     /**
-     *
+     * 
      *
      * @param string $attribute
      *
@@ -61,6 +70,7 @@ class PersonSetting
      */
     public function setAttribute(string $attribute) : self
     {
+        $this->initialized['attribute'] = true;
         $this->attribute = $attribute;
         return $this;
     }
@@ -82,6 +92,7 @@ class PersonSetting
      */
     public function setValue($value) : self
     {
+        $this->initialized['value'] = true;
         $this->value = $value;
         return $this;
     }

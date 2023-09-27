@@ -2,10 +2,19 @@
 
 namespace ChurchTools\Api2\Exception;
 
-class CreateNewCampusPaymentRequiredException extends \RuntimeException implements ClientException
+class CreateNewCampusPaymentRequiredException extends PaymentRequiredException
 {
-    public function __construct()
+    /**
+     * @var \Psr\Http\Message\ResponseInterface
+     */
+    private $response;
+    public function __construct(\Psr\Http\Message\ResponseInterface $response = null)
     {
-        parent::__construct('License limit reached. Update your license to perform this action.', 402);
+        parent::__construct('License limit reached. Update your license to perform this action.');
+        $this->response = $response;
+    }
+    public function getResponse() : ?\Psr\Http\Message\ResponseInterface
+    {
+        return $this->response;
     }
 }

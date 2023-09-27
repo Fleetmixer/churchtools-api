@@ -2,28 +2,36 @@
 
 namespace ChurchTools\Api2\Model;
 
-class AppointmentTemplate
+class AppointmentTemplate extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var int
      */
     protected $id;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $title;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $comment;
     /**
-     *
+     * 
      *
      * @var string
      */
@@ -35,55 +43,55 @@ class AppointmentTemplate
      */
     protected $duration;
     /**
-     *
+     * 
      *
      * @var bool
      */
     protected $allDay;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $note;
     /**
-     *
+     * 
      *
      * @var bool
      */
     protected $isInternal;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $categoryId;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $repeatId;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $repeatFrequence;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $repeatOptionId;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $repeatDuration;
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -92,7 +100,7 @@ class AppointmentTemplate
         return $this->id;
     }
     /**
-     *
+     * 
      *
      * @param int $id
      *
@@ -100,11 +108,12 @@ class AppointmentTemplate
      */
     public function setId(int $id) : self
     {
+        $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -113,7 +122,7 @@ class AppointmentTemplate
         return $this->title;
     }
     /**
-     *
+     * 
      *
      * @param string $title
      *
@@ -121,11 +130,12 @@ class AppointmentTemplate
      */
     public function setTitle(string $title) : self
     {
+        $this->initialized['title'] = true;
         $this->title = $title;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -134,7 +144,7 @@ class AppointmentTemplate
         return $this->comment;
     }
     /**
-     *
+     * 
      *
      * @param string $comment
      *
@@ -142,11 +152,12 @@ class AppointmentTemplate
      */
     public function setComment(string $comment) : self
     {
+        $this->initialized['comment'] = true;
         $this->comment = $comment;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -155,7 +166,7 @@ class AppointmentTemplate
         return $this->startTime;
     }
     /**
-     *
+     * 
      *
      * @param string $startTime
      *
@@ -163,6 +174,7 @@ class AppointmentTemplate
      */
     public function setStartTime(string $startTime) : self
     {
+        $this->initialized['startTime'] = true;
         $this->startTime = $startTime;
         return $this;
     }
@@ -184,11 +196,12 @@ class AppointmentTemplate
      */
     public function setDuration(int $duration) : self
     {
+        $this->initialized['duration'] = true;
         $this->duration = $duration;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -197,7 +210,7 @@ class AppointmentTemplate
         return $this->allDay;
     }
     /**
-     *
+     * 
      *
      * @param bool $allDay
      *
@@ -205,11 +218,12 @@ class AppointmentTemplate
      */
     public function setAllDay(bool $allDay) : self
     {
+        $this->initialized['allDay'] = true;
         $this->allDay = $allDay;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -218,7 +232,7 @@ class AppointmentTemplate
         return $this->note;
     }
     /**
-     *
+     * 
      *
      * @param string $note
      *
@@ -226,11 +240,12 @@ class AppointmentTemplate
      */
     public function setNote(string $note) : self
     {
+        $this->initialized['note'] = true;
         $this->note = $note;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -239,7 +254,7 @@ class AppointmentTemplate
         return $this->isInternal;
     }
     /**
-     *
+     * 
      *
      * @param bool $isInternal
      *
@@ -247,11 +262,12 @@ class AppointmentTemplate
      */
     public function setIsInternal(bool $isInternal) : self
     {
+        $this->initialized['isInternal'] = true;
         $this->isInternal = $isInternal;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -260,7 +276,7 @@ class AppointmentTemplate
         return $this->categoryId;
     }
     /**
-     *
+     * 
      *
      * @param int $categoryId
      *
@@ -268,11 +284,12 @@ class AppointmentTemplate
      */
     public function setCategoryId(int $categoryId) : self
     {
+        $this->initialized['categoryId'] = true;
         $this->categoryId = $categoryId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -281,7 +298,7 @@ class AppointmentTemplate
         return $this->repeatId;
     }
     /**
-     *
+     * 
      *
      * @param int $repeatId
      *
@@ -289,11 +306,12 @@ class AppointmentTemplate
      */
     public function setRepeatId(int $repeatId) : self
     {
+        $this->initialized['repeatId'] = true;
         $this->repeatId = $repeatId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -302,7 +320,7 @@ class AppointmentTemplate
         return $this->repeatFrequence;
     }
     /**
-     *
+     * 
      *
      * @param int $repeatFrequence
      *
@@ -310,11 +328,12 @@ class AppointmentTemplate
      */
     public function setRepeatFrequence(int $repeatFrequence) : self
     {
+        $this->initialized['repeatFrequence'] = true;
         $this->repeatFrequence = $repeatFrequence;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -323,7 +342,7 @@ class AppointmentTemplate
         return $this->repeatOptionId;
     }
     /**
-     *
+     * 
      *
      * @param int $repeatOptionId
      *
@@ -331,11 +350,12 @@ class AppointmentTemplate
      */
     public function setRepeatOptionId(int $repeatOptionId) : self
     {
+        $this->initialized['repeatOptionId'] = true;
         $this->repeatOptionId = $repeatOptionId;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -344,7 +364,7 @@ class AppointmentTemplate
         return $this->repeatDuration;
     }
     /**
-     *
+     * 
      *
      * @param int $repeatDuration
      *
@@ -352,6 +372,7 @@ class AppointmentTemplate
      */
     public function setRepeatDuration(int $repeatDuration) : self
     {
+        $this->initialized['repeatDuration'] = true;
         $this->repeatDuration = $repeatDuration;
         return $this;
     }

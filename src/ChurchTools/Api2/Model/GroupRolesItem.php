@@ -2,8 +2,16 @@
 
 namespace ChurchTools\Api2\Model;
 
-class GroupRolesItem
+class GroupRolesItem extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * ID of this group role.
      *
@@ -106,6 +114,7 @@ class GroupRolesItem
      */
     public function setId(int $id) : self
     {
+        $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
@@ -127,6 +136,7 @@ class GroupRolesItem
      */
     public function setGroupTypeRoleId(int $groupTypeRoleId) : self
     {
+        $this->initialized['groupTypeRoleId'] = true;
         $this->groupTypeRoleId = $groupTypeRoleId;
         return $this;
     }
@@ -148,6 +158,7 @@ class GroupRolesItem
      */
     public function setGroupTypeId(int $groupTypeId) : self
     {
+        $this->initialized['groupTypeId'] = true;
         $this->groupTypeId = $groupTypeId;
         return $this;
     }
@@ -169,6 +180,7 @@ class GroupRolesItem
      */
     public function setName(string $name) : self
     {
+        $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
     }
@@ -190,6 +202,7 @@ class GroupRolesItem
      */
     public function setShorty(string $shorty) : self
     {
+        $this->initialized['shorty'] = true;
         $this->shorty = $shorty;
         return $this;
     }
@@ -211,6 +224,7 @@ class GroupRolesItem
      */
     public function setSortKey(int $sortKey) : self
     {
+        $this->initialized['sortKey'] = true;
         $this->sortKey = $sortKey;
         return $this;
     }
@@ -232,6 +246,7 @@ class GroupRolesItem
      */
     public function setToDelete(bool $toDelete) : self
     {
+        $this->initialized['toDelete'] = true;
         $this->toDelete = $toDelete;
         return $this;
     }
@@ -253,6 +268,7 @@ class GroupRolesItem
      */
     public function setHasRequested(bool $hasRequested) : self
     {
+        $this->initialized['hasRequested'] = true;
         $this->hasRequested = $hasRequested;
         return $this;
     }
@@ -274,6 +290,7 @@ class GroupRolesItem
      */
     public function setIsLeader(bool $isLeader) : self
     {
+        $this->initialized['isLeader'] = true;
         $this->isLeader = $isLeader;
         return $this;
     }
@@ -295,6 +312,7 @@ class GroupRolesItem
      */
     public function setIsDefault(bool $isDefault) : self
     {
+        $this->initialized['isDefault'] = true;
         $this->isDefault = $isDefault;
         return $this;
     }
@@ -316,6 +334,7 @@ class GroupRolesItem
      */
     public function setIsHidden(bool $isHidden) : self
     {
+        $this->initialized['isHidden'] = true;
         $this->isHidden = $isHidden;
         return $this;
     }
@@ -337,6 +356,7 @@ class GroupRolesItem
      */
     public function setGrowPathId(?int $growPathId) : self
     {
+        $this->initialized['growPathId'] = true;
         $this->growPathId = $growPathId;
         return $this;
     }
@@ -358,6 +378,7 @@ class GroupRolesItem
      */
     public function setForceTwoFactorAuth(bool $forceTwoFactorAuth) : self
     {
+        $this->initialized['forceTwoFactorAuth'] = true;
         $this->forceTwoFactorAuth = $forceTwoFactorAuth;
         return $this;
     }
@@ -379,6 +400,7 @@ class GroupRolesItem
      */
     public function setIsActive(bool $isActive) : self
     {
+        $this->initialized['isActive'] = true;
         $this->isActive = $isActive;
         return $this;
     }

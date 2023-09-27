@@ -2,16 +2,24 @@
 
 namespace ChurchTools\Api2\Model;
 
-class PersonsPropertiesPostResponse200Data1
+class PersonsPropertiesPostResponse200Data1 extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var bool
      */
     protected $hasEmail;
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -20,7 +28,7 @@ class PersonsPropertiesPostResponse200Data1
         return $this->hasEmail;
     }
     /**
-     *
+     * 
      *
      * @param bool $hasEmail
      *
@@ -28,6 +36,7 @@ class PersonsPropertiesPostResponse200Data1
      */
     public function setHasEmail(bool $hasEmail) : self
     {
+        $this->initialized['hasEmail'] = true;
         $this->hasEmail = $hasEmail;
         return $this;
     }

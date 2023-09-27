@@ -2,16 +2,24 @@
 
 namespace ChurchTools\Api2\Model;
 
-class PersonsIdEventsGetResponse200
+class PersonsIdEventsGetResponse200 extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var Event
      */
     protected $data;
     /**
-     *
+     * 
      *
      * @return Event
      */
@@ -20,7 +28,7 @@ class PersonsIdEventsGetResponse200
         return $this->data;
     }
     /**
-     *
+     * 
      *
      * @param Event $data
      *
@@ -28,6 +36,7 @@ class PersonsIdEventsGetResponse200
      */
     public function setData(Event $data) : self
     {
+        $this->initialized['data'] = true;
         $this->data = $data;
         return $this;
     }

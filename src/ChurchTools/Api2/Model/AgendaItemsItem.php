@@ -2,34 +2,42 @@
 
 namespace ChurchTools\Api2\Model;
 
-class AgendaItemsItem
+class AgendaItemsItem extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var int
      */
     protected $id;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $position;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $type;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $title;
     /**
-     *
+     * 
      *
      * @var string
      */
@@ -47,13 +55,13 @@ class AgendaItemsItem
      */
     protected $start;
     /**
-     *
+     * 
      *
      * @var bool
      */
     protected $isBeforeEvent;
     /**
-     *
+     * 
      *
      * @var AgendaItemsItemResponsible
      */
@@ -71,7 +79,7 @@ class AgendaItemsItem
      */
     protected $song;
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -80,7 +88,7 @@ class AgendaItemsItem
         return $this->id;
     }
     /**
-     *
+     * 
      *
      * @param int $id
      *
@@ -88,11 +96,12 @@ class AgendaItemsItem
      */
     public function setId(int $id) : self
     {
+        $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -101,7 +110,7 @@ class AgendaItemsItem
         return $this->position;
     }
     /**
-     *
+     * 
      *
      * @param int $position
      *
@@ -109,11 +118,12 @@ class AgendaItemsItem
      */
     public function setPosition(int $position) : self
     {
+        $this->initialized['position'] = true;
         $this->position = $position;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -122,7 +132,7 @@ class AgendaItemsItem
         return $this->type;
     }
     /**
-     *
+     * 
      *
      * @param string $type
      *
@@ -130,11 +140,12 @@ class AgendaItemsItem
      */
     public function setType(string $type) : self
     {
+        $this->initialized['type'] = true;
         $this->type = $type;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -143,7 +154,7 @@ class AgendaItemsItem
         return $this->title;
     }
     /**
-     *
+     * 
      *
      * @param string $title
      *
@@ -151,11 +162,12 @@ class AgendaItemsItem
      */
     public function setTitle(string $title) : self
     {
+        $this->initialized['title'] = true;
         $this->title = $title;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -164,7 +176,7 @@ class AgendaItemsItem
         return $this->note;
     }
     /**
-     *
+     * 
      *
      * @param string $note
      *
@@ -172,6 +184,7 @@ class AgendaItemsItem
      */
     public function setNote(string $note) : self
     {
+        $this->initialized['note'] = true;
         $this->note = $note;
         return $this;
     }
@@ -193,6 +206,7 @@ class AgendaItemsItem
      */
     public function setDuration(int $duration) : self
     {
+        $this->initialized['duration'] = true;
         $this->duration = $duration;
         return $this;
     }
@@ -214,11 +228,12 @@ class AgendaItemsItem
      */
     public function setStart(\DateTime $start) : self
     {
+        $this->initialized['start'] = true;
         $this->start = $start;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -227,7 +242,7 @@ class AgendaItemsItem
         return $this->isBeforeEvent;
     }
     /**
-     *
+     * 
      *
      * @param bool $isBeforeEvent
      *
@@ -235,11 +250,12 @@ class AgendaItemsItem
      */
     public function setIsBeforeEvent(bool $isBeforeEvent) : self
     {
+        $this->initialized['isBeforeEvent'] = true;
         $this->isBeforeEvent = $isBeforeEvent;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return AgendaItemsItemResponsible
      */
@@ -248,7 +264,7 @@ class AgendaItemsItem
         return $this->responsible;
     }
     /**
-     *
+     * 
      *
      * @param AgendaItemsItemResponsible $responsible
      *
@@ -256,6 +272,7 @@ class AgendaItemsItem
      */
     public function setResponsible(AgendaItemsItemResponsible $responsible) : self
     {
+        $this->initialized['responsible'] = true;
         $this->responsible = $responsible;
         return $this;
     }
@@ -277,6 +294,7 @@ class AgendaItemsItem
      */
     public function setServiceGroupNotes(array $serviceGroupNotes) : self
     {
+        $this->initialized['serviceGroupNotes'] = true;
         $this->serviceGroupNotes = $serviceGroupNotes;
         return $this;
     }
@@ -298,6 +316,7 @@ class AgendaItemsItem
      */
     public function setSong(AgendaItemsItemSong $song) : self
     {
+        $this->initialized['song'] = true;
         $this->song = $song;
         return $this;
     }

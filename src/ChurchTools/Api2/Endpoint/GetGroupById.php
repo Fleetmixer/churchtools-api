@@ -2,11 +2,11 @@
 
 namespace ChurchTools\Api2\Endpoint;
 
-class GetGroupById extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jane\OpenApiRuntime\Client\Psr7Endpoint
+class GetGroupById extends \ChurchTools\Api2\Runtime\Client\BaseEndpoint implements \ChurchTools\Api2\Runtime\Client\Endpoint
 {
     protected $id;
     /**
-     *
+     * 
      *
      * @param int $id ID of group
      */
@@ -14,7 +14,7 @@ class GetGroupById extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \
     {
         $this->id = $id;
     }
-    use \Jane\OpenApiRuntime\Client\Psr7EndpointTrait;
+    use \ChurchTools\Api2\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
         return 'GET';
@@ -39,16 +39,22 @@ class GetGroupById extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \
      *
      * @return null|\ChurchTools\Api2\Model\GroupsIdGetResponse200
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
-        if (200 === $status && mb_strpos($contentType, 'application/json') !== false) {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
+        if (is_null($contentType) === false && (200 === $status && mb_strpos($contentType, 'application/json') !== false)) {
             return $serializer->deserialize($body, 'ChurchTools\\Api2\\Model\\GroupsIdGetResponse200', 'json');
         }
         if (403 === $status) {
-            throw new \ChurchTools\Api2\Exception\GetGroupByIdForbiddenException();
+            throw new \ChurchTools\Api2\Exception\GetGroupByIdForbiddenException($response);
         }
         if (404 === $status) {
-            throw new \ChurchTools\Api2\Exception\GetGroupByIdNotFoundException();
+            throw new \ChurchTools\Api2\Exception\GetGroupByIdNotFoundException($response);
         }
+    }
+    public function getAuthenticationScopes() : array
+    {
+        return array('login_token');
     }
 }

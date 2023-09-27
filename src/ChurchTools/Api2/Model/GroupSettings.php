@@ -2,10 +2,18 @@
 
 namespace ChurchTools\Api2\Model;
 
-class GroupSettings
+class GroupSettings extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var bool
      */
@@ -23,7 +31,7 @@ class GroupSettings
      */
     protected $autoAccept;
     /**
-     *
+     * 
      *
      * @var bool
      */
@@ -35,7 +43,7 @@ class GroupSettings
      */
     protected $inStatistic;
     /**
-     *
+     * 
      *
      * @var GroupSettingsGroupMeeting
      */
@@ -53,7 +61,7 @@ class GroupSettings
      */
     protected $newMember;
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -62,7 +70,7 @@ class GroupSettings
         return $this->isHidden;
     }
     /**
-     *
+     * 
      *
      * @param bool $isHidden
      *
@@ -70,6 +78,7 @@ class GroupSettings
      */
     public function setIsHidden(bool $isHidden) : self
     {
+        $this->initialized['isHidden'] = true;
         $this->isHidden = $isHidden;
         return $this;
     }
@@ -91,6 +100,7 @@ class GroupSettings
      */
     public function setIsOpenForMembers(bool $isOpenForMembers) : self
     {
+        $this->initialized['isOpenForMembers'] = true;
         $this->isOpenForMembers = $isOpenForMembers;
         return $this;
     }
@@ -112,11 +122,12 @@ class GroupSettings
      */
     public function setAutoAccept(bool $autoAccept) : self
     {
+        $this->initialized['autoAccept'] = true;
         $this->autoAccept = $autoAccept;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return bool
      */
@@ -125,7 +136,7 @@ class GroupSettings
         return $this->isPublic;
     }
     /**
-     *
+     * 
      *
      * @param bool $isPublic
      *
@@ -133,6 +144,7 @@ class GroupSettings
      */
     public function setIsPublic(bool $isPublic) : self
     {
+        $this->initialized['isPublic'] = true;
         $this->isPublic = $isPublic;
         return $this;
     }
@@ -154,11 +166,12 @@ class GroupSettings
      */
     public function setInStatistic(bool $inStatistic) : self
     {
+        $this->initialized['inStatistic'] = true;
         $this->inStatistic = $inStatistic;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return GroupSettingsGroupMeeting
      */
@@ -167,7 +180,7 @@ class GroupSettings
         return $this->groupMeeting;
     }
     /**
-     *
+     * 
      *
      * @param GroupSettingsGroupMeeting $groupMeeting
      *
@@ -175,6 +188,7 @@ class GroupSettings
      */
     public function setGroupMeeting(GroupSettingsGroupMeeting $groupMeeting) : self
     {
+        $this->initialized['groupMeeting'] = true;
         $this->groupMeeting = $groupMeeting;
         return $this;
     }
@@ -196,6 +210,7 @@ class GroupSettings
      */
     public function setInformLeader(bool $informLeader) : self
     {
+        $this->initialized['informLeader'] = true;
         $this->informLeader = $informLeader;
         return $this;
     }
@@ -217,6 +232,7 @@ class GroupSettings
      */
     public function setNewMember(?GroupSettingsNewMember $newMember) : self
     {
+        $this->initialized['newMember'] = true;
         $this->newMember = $newMember;
         return $this;
     }

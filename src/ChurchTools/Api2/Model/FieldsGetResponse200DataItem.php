@@ -2,8 +2,16 @@
 
 namespace ChurchTools\Api2\Model;
 
-class FieldsGetResponse200DataItem
+class FieldsGetResponse200DataItem extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * ID of field
      *
@@ -106,6 +114,7 @@ class FieldsGetResponse200DataItem
      */
     public function setId(int $id) : self
     {
+        $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
@@ -127,6 +136,7 @@ class FieldsGetResponse200DataItem
      */
     public function setKey(string $key) : self
     {
+        $this->initialized['key'] = true;
         $this->key = $key;
         return $this;
     }
@@ -148,6 +158,7 @@ class FieldsGetResponse200DataItem
      */
     public function setName(string $name) : self
     {
+        $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
     }
@@ -169,6 +180,7 @@ class FieldsGetResponse200DataItem
      */
     public function setShorty(string $shorty) : self
     {
+        $this->initialized['shorty'] = true;
         $this->shorty = $shorty;
         return $this;
     }
@@ -190,6 +202,7 @@ class FieldsGetResponse200DataItem
      */
     public function setFieldCategoryCode(string $fieldCategoryCode) : self
     {
+        $this->initialized['fieldCategoryCode'] = true;
         $this->fieldCategoryCode = $fieldCategoryCode;
         return $this;
     }
@@ -211,6 +224,7 @@ class FieldsGetResponse200DataItem
      */
     public function setFieldTypeCode(string $fieldTypeCode) : self
     {
+        $this->initialized['fieldTypeCode'] = true;
         $this->fieldTypeCode = $fieldTypeCode;
         return $this;
     }
@@ -232,6 +246,7 @@ class FieldsGetResponse200DataItem
      */
     public function setIsActive(bool $isActive) : self
     {
+        $this->initialized['isActive'] = true;
         $this->isActive = $isActive;
         return $this;
     }
@@ -253,6 +268,7 @@ class FieldsGetResponse200DataItem
      */
     public function setIsNewPersonField(bool $isNewPersonField) : self
     {
+        $this->initialized['isNewPersonField'] = true;
         $this->isNewPersonField = $isNewPersonField;
         return $this;
     }
@@ -274,6 +290,7 @@ class FieldsGetResponse200DataItem
      */
     public function setLineEnding(string $lineEnding) : self
     {
+        $this->initialized['lineEnding'] = true;
         $this->lineEnding = $lineEnding;
         return $this;
     }
@@ -295,6 +312,7 @@ class FieldsGetResponse200DataItem
      */
     public function setSecLevel(int $secLevel) : self
     {
+        $this->initialized['secLevel'] = true;
         $this->secLevel = $secLevel;
         return $this;
     }
@@ -316,6 +334,7 @@ class FieldsGetResponse200DataItem
      */
     public function setLength(?int $length) : self
     {
+        $this->initialized['length'] = true;
         $this->length = $length;
         return $this;
     }
@@ -337,6 +356,7 @@ class FieldsGetResponse200DataItem
      */
     public function setDeleteOnArchive(bool $deleteOnArchive) : self
     {
+        $this->initialized['deleteOnArchive'] = true;
         $this->deleteOnArchive = $deleteOnArchive;
         return $this;
     }
@@ -358,6 +378,7 @@ class FieldsGetResponse200DataItem
      */
     public function setNullable(bool $nullable) : self
     {
+        $this->initialized['nullable'] = true;
         $this->nullable = $nullable;
         return $this;
     }
@@ -379,6 +400,7 @@ class FieldsGetResponse200DataItem
      */
     public function setSortKey(int $sortKey) : self
     {
+        $this->initialized['sortKey'] = true;
         $this->sortKey = $sortKey;
         return $this;
     }

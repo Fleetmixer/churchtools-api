@@ -2,28 +2,36 @@
 
 namespace ChurchTools\Api2\Model;
 
-class CampusesPostBody
+class CampusesPostBody extends \ArrayObject
 {
     /**
-     *
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
+    /**
+     * 
      *
      * @var string
      */
     protected $name;
     /**
-     *
+     * 
      *
      * @var string
      */
     protected $shorty;
     /**
-     *
+     * 
      *
      * @var int
      */
     protected $sortKey = 10;
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -32,7 +40,7 @@ class CampusesPostBody
         return $this->name;
     }
     /**
-     *
+     * 
      *
      * @param string $name
      *
@@ -40,11 +48,12 @@ class CampusesPostBody
      */
     public function setName(string $name) : self
     {
+        $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return string
      */
@@ -53,7 +62,7 @@ class CampusesPostBody
         return $this->shorty;
     }
     /**
-     *
+     * 
      *
      * @param string $shorty
      *
@@ -61,11 +70,12 @@ class CampusesPostBody
      */
     public function setShorty(string $shorty) : self
     {
+        $this->initialized['shorty'] = true;
         $this->shorty = $shorty;
         return $this;
     }
     /**
-     *
+     * 
      *
      * @return int
      */
@@ -74,7 +84,7 @@ class CampusesPostBody
         return $this->sortKey;
     }
     /**
-     *
+     * 
      *
      * @param int $sortKey
      *
@@ -82,6 +92,7 @@ class CampusesPostBody
      */
     public function setSortKey(int $sortKey) : self
     {
+        $this->initialized['sortKey'] = true;
         $this->sortKey = $sortKey;
         return $this;
     }
