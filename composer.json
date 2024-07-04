@@ -1,5 +1,5 @@
 {
-	"name" : "excusemeplease/churchtools-api",
+	"name" : "Fleetmixer/churchtools-api",
 	"type" : "library",
 	"description" : "Object-oriented API access to ChurchTools",
 	"homepage" : "https://github.com/vineyardkoeln/churchtools-api",
