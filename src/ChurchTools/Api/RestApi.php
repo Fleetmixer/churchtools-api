@@ -382,6 +382,7 @@ class RestApi
             'headers' => [
                 'Content-type' => 'application/x-www-form-urlencoded',
                 'CSRF-Token' => $this->csrfToken,
+                'User-Agent' => 'Communi-API/1.0',
             ],
         ];
     }

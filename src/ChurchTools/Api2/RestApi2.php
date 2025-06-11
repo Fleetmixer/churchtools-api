@@ -64,7 +64,8 @@ class RestApi2 extends Client
     {
         $options = array(
             'http' => array(
-                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+                'header' => "Content-type: application/x-www-form-urlencoded\r\n" .
+                           "User-Agent: Communi-API/1.0\r\n",
                 'method' => 'POST',
                 'content' => http_build_query($data),
             )
