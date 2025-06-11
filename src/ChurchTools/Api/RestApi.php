@@ -33,12 +33,15 @@ class RestApi
      */
     private function __construct(string $churchHandle, $cookie_jar = null)
     {
+        $options = [
+            'headers' => [
+                'User-Agent' => 'Communi-API/1.0'
+            ]
+        ];
         if ($cookie_jar) {
-            $cookies = [ 'cookies' => $cookie_jar ];
-        } else {
-            $cookies = [];
+            $options['cookies'] = $cookie_jar;
         }
-        $this->guzzleClient = new \GuzzleHttp\Client($cookies);
+        $this->guzzleClient = new \GuzzleHttp\Client($options);
         $this->churchHandle = $churchHandle;
     }
 
